@@ -2,21 +2,19 @@
 # -*- coding: utf-8 -*-
 """
 バッチ処理スクリプト（リファクタ版）
-旧orchestrate_personas.pyの全機能を維持
+旧 orchestrate_personas.py の全機能を維持
 
 使い方:
   python batch_orchestrator.py \
     --info data/info.json \
     --persona-dir data/personas \
     --folder-id 1Ay4ROIpd-83CYn8PR_Pbw6M4ADW5XBn7
-    
-    python batch_orchestrator.py 
-  --info data/info/info_bokuno.json 
-  --persona-dir data/personas/ren.txt
-  --folder-id 1Ay4ROIpd-83CYn8PR_Pbw6M4ADW5XBn7 
-  --force-login
-  
-  
+
+  python batch_orchestrator.py \
+    --info data/info/info_bokuno.json \
+    --persona-dir data/personas/ren.txt \
+    --folder-id 1Ay4ROIpd-83CYn8PR_Pbw6M4ADW5XBn7 \
+    --force-login
 """
 import os
 import re
@@ -39,7 +37,7 @@ ENGINE_FILE = ROOT / "article_generator.py"
 PUBLISH_FILE = ROOT / "document_publisher.py"
 DEFAULT_OUT_BASE = ROOT / "out_batch"
 
-# ───────────── ユーティリティ ─────────────
+# ------------- ユーティリティ -------------
 def normpath(p: str) -> pathlib.Path:
     """パス正規化"""
     return pathlib.Path(os.path.expandvars(p)).expanduser().resolve()
@@ -89,7 +87,7 @@ def sheets_append_row(auth: GoogleAuth, spreadsheet_id: str,
         body={"values": [row]},
     ).execute()
 
-# ───────────── メイン ─────────────
+# ------------- メイン -------------
 def main():
     ap = argparse.ArgumentParser(
         description="記事をバッチ生成してGoogleドキュメント化"
@@ -176,7 +174,7 @@ def main():
     
     # キーワード読み込み
     use_csv = bool(args.keywords_csv.strip())
-    ready_list: List[str] = []
+    ready_list: List[Dict[str, any]] = []
     
     if use_csv:
         csv_path = normpath(args.keywords_csv)
@@ -186,14 +184,46 @@ def main():
         with csv_path.open("r", encoding="utf-8-sig", newline="") as f:
             rdr = csv.DictReader(f)
             hdr = [h.strip() for h in (rdr.fieldnames or [])]
-            if "keyword" not in hdr or "status" not in hdr:
-                raise SystemExit("CSV requires 'keyword' and 'status' columns")
+            if "keyword" not in hdr or "info" not in hdr or "prompts" not in hdr:
+                raise SystemExit("CSV requires 'keyword', 'info', and 'prompts' columns")
             
-            for row in rdr:
+            rows_data = []
+            for idx, row in enumerate(rdr, start=2):  # 2から開始（ヘッダーが1行目）
                 kw = (row.get("keyword") or "").strip()
-                st = (row.get("status") or "").strip().upper()
-                if kw and (st == "" or st == "READY"):
-                    ready_list.append(kw)
+                info_str = (row.get("info") or "").strip()
+                prompts_str = (row.get("prompts") or "").strip()
+                
+                # 空欄チェック
+                if not kw:
+                    raise SystemExit(f"CSV行{idx}: 'keyword' が空です")
+                if not info_str:
+                    raise SystemExit(f"CSV行{idx}: 'info' が空です（keyword: {kw}）")
+                if not prompts_str:
+                    raise SystemExit(f"CSV行{idx}: 'prompts' が空です（keyword: {kw}）")
+                
+                # パス検証
+                info_file = normpath(info_str)
+                if not info_file.exists():
+                    raise SystemExit(f"CSV行{idx}: info.json が見つかりません: {info_file}")
+                
+                prompts_dir = normpath(prompts_str)
+                if not prompts_dir.is_dir():
+                    raise SystemExit(f"CSV行{idx}: プロンプトディレクトリが見つかりません: {prompts_dir}")
+                
+                # プロンプトファイル存在チェック
+                required_prompts = ["title.txt", "outline.txt", "draft.txt"]
+                for fname in required_prompts:
+                    prompt_file = prompts_dir / fname
+                    if not prompt_file.exists():
+                        raise SystemExit(f"CSV行{idx}: {fname} が見つかりません: {prompt_file}")
+                
+                rows_data.append({
+                    "keyword": kw,
+                    "info_path": info_file,
+                    "prompts_dir": prompts_dir
+                })
+            
+            ready_list = rows_data
         
         if args.limit > 0:
             ready_list = ready_list[:args.limit]
@@ -202,7 +232,12 @@ def main():
         pk = (info_dict.get("primary_keyword") or "").strip()
         if not pk:
             raise SystemExit("primary_keyword required in info.json")
-        ready_list = [pk]
+        # 非CSVモード: デフォルトのinfo_pathを使用（プロンプトはarticle_generator内でConfigから取得）
+        ready_list = [{
+            "keyword": pk,
+            "info_path": info_path,
+            "prompts_dir": None  # Noneの場合はarticle_generator側でConfigから取得
+        }]
     
     out_base = normpath(args.out_base)
     out_base.mkdir(parents=True, exist_ok=True)
@@ -222,11 +257,15 @@ def main():
         persona_name = p["persona_name"]
         persona_urls = p["persona_urls"]
         
-        for kw in ready_list:
+        for item in ready_list:
+            kw = item["keyword"]
+            item_info_path = item["info_path"]
+            item_prompts_dir = item["prompts_dir"]
+            
             print(f"\n=== [{p_idx}/{len(personas)}] {persona_name} | {kw} ===")
             
-            # 一時info.json作成
-            base_info = json.loads(info_path.read_text(encoding="utf-8"))
+            # 一時info.json作成（CSV指定のinfoファイルを使用）
+            base_info = json.loads(item_info_path.read_text(encoding="utf-8"))
             base_info["primary_keyword"] = kw
             tmp_info = out_base / f"_tmpinfo_{int(time.time())}_{persona_name}.json"
             tmp_info.write_text(json.dumps(base_info, ensure_ascii=False, indent=2), 
@@ -236,8 +275,11 @@ def main():
             run_dir = out_base / f"{time.strftime('%Y%m%d_%H%M%S')}_{persona_name}"
             run_dir.mkdir(parents=True, exist_ok=True)
             print(f"[info] outdir: {run_dir}")
+            print(f"[info] info: {item_info_path}")
+            if item_prompts_dir:
+                print(f"[info] prompts: {item_prompts_dir}")
             
-            # ★変更点：記事生成コマンド（プロンプトパス引数を削除）
+            # 記事生成コマンド（プロンプトパスを明示的に指定）
             cmd = [
                 sys.executable,
                 str(ENGINE_FILE),
@@ -248,6 +290,15 @@ def main():
                 "--t1", str(args.t1),
                 "--t2", str(args.t2),
             ]
+            
+            # プロンプトディレクトリが指定されている場合は追加
+            if item_prompts_dir:
+                cmd += [
+                    "--title_prompt", str(item_prompts_dir / "title.txt"),
+                    "--outline_prompt", str(item_prompts_dir / "outline.txt"),
+                    "--draft_prompt", str(item_prompts_dir / "draft.txt"),
+                ]
+            
             
             rc, out_text, err_text = run(cmd)
             if rc != 0:
