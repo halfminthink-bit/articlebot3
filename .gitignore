@@ -1,0 +1,49 @@
+# --- Secrets / local config ---
+.env
+.env.*
+token.json
+token.pickle
+credentials.json
+
+# --- Virtual envs ---
+.venv/
+venv/
+env/
+
+# --- Build / packaging ---
+build/
+dist/
+*.egg-info/
+.eggs/
+
+# --- Python cache ---
+__pycache__/
+*.py[cod]
+*$py.class
+
+# --- Test / coverage caches ---
+.pytest_cache/
+.coverage
+coverage.xml
+htmlcov/
+.mypy_cache/
+.ruff_cache/
+.pyre/
+
+# --- Editor / IDE ---
+.vscode/
+.idea/
+
+# --- OS junk ---
+.DS_Store
+Thumbs.db
+desktop.ini
+
+# --- Project outputs ---
+out/
+out_batch/
+logs/
+*.log
+
+# --- Misc caches ---
+.cache/

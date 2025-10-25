@@ -1,0 +1,144 @@
+{
+  "primary_keyword": "会議用 マイク レコーダー 一体型",
+  "title_samples": [],
+  "target_length_chars": 3000,
+
+  "product": {
+    "brand": "Plaud",
+    "name": "PLAUD NOTE",
+    "series": "Plaud",
+    "category": "AI voice recorder",
+    "official_store": "PLAUD Japan"
+  },
+
+  "official": {
+    "price_jpy": 27500,
+    "bundle_includes": [
+      "Plaud Note 本体",
+      "MagSafeケース（1点）",
+      "無制限クラウドストレージ",
+      "無料のAIスタータープラン（永続）"
+    ],
+    "specs": {
+      "local_storage_gb": 64,
+      "continuous_recording_hours": 30,
+      "standby_days": 60,
+      "weight_g": 29.5,
+      "thickness_mm": 2.99,
+      "languages_supported": 112,
+      "modes": ["通常録音", "通話録音"],
+      "magsafe_compatible": true
+    },
+    "ai": {
+      "engine_branding": "PLAUD Intelligence",
+      "models_mentioned": ["GPT-5.0", "Claude 4", "Gemini 2.5 Pro", "o3-mini"],
+      "features": ["文字起こし", "要約", "話者識別", "自動段落分け", "テンプレート（15種類以上）"]
+    },
+    "policies": {
+      "return_days": 30,
+      "warranty_years": 1,
+      "lifetime_support": true,
+      "shipping_estimate_business_days": "3-5"
+    },
+    "design": {
+      "colors": ["スターライト", "ブラック", "シルバー"],
+      "style_notes": [
+        "薄型・軽量でスマホと一体化するミニマルデザイン（MagSafeケース装着）",
+        "仕事シーンに馴染むシンプルな金属調トーン"
+      ]
+    }
+  },
+
+  "app_compatibility": { "iOS": "14.0+", "Android": "6.0+" },
+
+  "use_cases": ["会議", "電話", "講義", "インタビュー", "ボイスメモ"],
+
+  "web_app_features": [
+    "PCマイクの録音",
+    "デスクトップ音声の録音",
+    "音声・動画ファイルのアップロード文字起こし",
+    "モバイルアプリ同等の要約機能"
+  ],
+
+  "ai_services": {
+    "annual_plans": [
+      { "plan": "Pro", "description": "PLAUD AI アプリ年間プロプラン", "price_jpy_per_year": null },
+      { "plan": "Unlimited", "description": "PLAUD AI アプリ年間無制限プラン", "price_jpy_per_year": null }
+    ],
+    "minute_packages": [
+      { "minutes": 6000, "type": "文字起こしパッケージ" },
+      { "minutes": 3000, "type": "文字起こしパッケージ" },
+      { "minutes": 600,  "type": "文字起こしパッケージ" }
+    ]
+  },
+
+  "independent_reviews": {
+    "mybest_review": {
+      "updated": "2025-06-02",
+      "score": 4.65,
+      "rank": { "position": 1, "out_of": 17 },
+      "tested_continuous_recording_hours": 25,
+      "category_scores": {
+        "clarity": 4.6,
+        "low_noise": 4.8,
+        "recording_ease": 4.65,
+        "playback_ease": 4.09,
+        "ai_accuracy": 3.08,
+        "ai_features": 4.58,
+        "battery_duration": 5.0
+      },
+      "notable_findings": [
+        "ポケット録音時の擦れノイズが平均8.97dBと小さめでクリアに録れる"
+      ]
+    }
+  },
+
+  "claims": [
+    { "key": "price_jpy", "value": 27500, "source_id": "official_jp" },
+    { "key": "continuous_recording_hours_official", "value": 30, "source_id": "official_jp" },
+    { "key": "continuous_recording_hours_mybest", "value": 25, "source_id": "mybest" },
+    { "key": "standby_days", "value": 60, "source_id": "official_jp" },
+    { "key": "storage_gb", "value": 64, "source_id": "official_jp" },
+    { "key": "languages_supported", "value": 112, "source_id": "official_jp" },
+    { "key": "ios_min_version", "value": "14.0", "source_id": "guide_review" },
+    { "key": "android_min_version", "value": "6.0", "source_id": "guide_review" }
+  ],
+
+  "strengths": [
+    {
+      "point": "要約機能で会議の要点を自動生成できる（録音→文字起こし→要約がシームレス）",
+      "evidence": "公式商品ページに要約機能の明記",
+      "source_id": "official_jp"
+    },
+    {
+      "point": "薄型・軽量でスタイリッシュ。スマホと一体化する見た目で携帯しやすい",
+      "evidence": "カラー展開とMagSafeケースによる一体化デザイン",
+      "source_id": "official_jp"
+    },
+    {
+      "point": "ポケットに入れても擦れノイズが小さく、クリアに録音しやすい",
+      "evidence": "ポケット録音時ノイズ平均8.97dBという実測テスト",
+      "source_id": "mybest"
+    },
+    {
+      "point": "AI機能のテンプレートや話者識別、段落整形など“あと編集”を減らす機能が充実",
+      "evidence": "AI機能の公式記載（テンプレ/話者識別/自動段落）",
+      "source_id": "official_jp"
+    }
+  ],
+
+  "sources": [
+    {
+      "id": "official_jp",
+      "title": "PLAUD NOTE 公式商品ページ（日本）",
+      "url": "https://jp.plaud.ai/products/plaud-note-ai-voice-recorder"
+    },
+    {
+      "id": "mybest",
+      "title": "mybest：PLAUD NOTE AIボイスレコーダーの口コミ・評判レビュー",
+      "url": "https://my-best.com/products/2370838"
+    }
+  ],
+
+  "last_checked_at": "2025-09-28T19:55:00+09:00"
+}

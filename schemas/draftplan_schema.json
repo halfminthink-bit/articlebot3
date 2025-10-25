@@ -1,0 +1,63 @@
+{
+  "$schema": "https://json-schema.org/draft-07/schema",
+  "title": "DraftPlan",
+  "type": "object",
+  "additionalProperties": false,
+  "required": ["h1", "persona", "h2s"],
+  "properties": {
+    "h1": { "type": "string", "minLength": 5 },
+    "persona": { "type": "string", "minLength": 1 },
+    "h2s": {
+      "type": "array",
+      "minItems": 4,
+      "maxItems": 6,
+      "items": {
+        "type": "object",
+        "additionalProperties": false,
+        "required": [
+          "title",
+          "voice_cues",
+          "focus_weight",
+          "fact_refs",
+          "openers",
+          "kw_targets"
+        ],
+        "properties": {
+          "title": { "type": "string", "minLength": 3 },
+          "voice_cues": {
+            "type": "object",
+            "additionalProperties": false,
+            "required": ["assertiveness", "hedging"],
+            "properties": {
+              "assertiveness": {
+                "type": "number",
+                "minimum": 0.0,
+                "maximum": 1.0
+              },
+              "hedging": {
+                "type": "string",
+                "enum": ["低", "中", "高"]
+              }
+            }
+          },
+          "focus_weight": {
+            "type": "number",
+            "minimum": 0.0,
+            "maximum": 1.0
+          },
+          "fact_refs": {
+            "type": "array",
+            "items": { "type": "string" },
+            "minItems": 1
+          },
+          "openers": { "type": "string", "minLength": 10 },
+          "kw_targets": {
+            "type": "array",
+            "items": { "type": "string" },
+            "minItems": 1
+          }
+        }
+      }
+    }
+  }
+}

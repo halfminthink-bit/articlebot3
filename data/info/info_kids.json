@@ -1,0 +1,119 @@
+{
+  "filename": "kids_programming_article_plan.json",
+  "primary_keyword": "子供 プログラミング 教室",
+  "secondary_keyword": "ちゃんプロ 評判",
+  "goal": "保護者向けに、無料/自宅学習→オンライン教室の順で選択肢を整理し、最後に“しっかり学びたいなら先の教室（=ちゃんプロ）”へ自然に導く記事を作るための設計データ。",
+  "tone": "保護者にも読みやすい、やさしい言葉＋フリーランス視点の実務的コメント",
+  "audience": ["小3〜中3の子どもを持つ保護者", "共働き・地方在住で自宅完結を望む家庭"],
+  "structure": [
+    {
+      "h2": "まずは無料・自宅で“試してみる”選択肢",
+      "body": "強制ではなく、子ども本人の「やってみたい」を大事に。まずは無料で触れて、興味や相性を一緒に確かめる。",
+      "resources": [
+        {
+          "name": "子ども向け無料プログラミング学習サイト特集",
+          "publisher": "コエテコ byGMO",
+          "url": "https://coeteco.jp/articles/10246",
+          "notes": "無料で学べるWebサイトのまとめ。家庭で試す“入口”として便利。",
+          "citations": [":contentReference[oaicite:0]{index=0}"]
+        },
+        {
+          "name": "完全無料でできるプログラミング学習方法（小学生）",
+          "publisher": "パプナビ",
+          "url": "https://papu-navi.com/free-programming-learning/",
+          "notes": "Scratch / Viscuit / Code.org / MakeCode などの無料サービス紹介。",
+          "citations": [":contentReference[oaicite:1]{index=1}"]
+        },
+        {
+          "name": "無料の小学生向けプログラミングソフト4選",
+          "publisher": "Tech Teacher",
+          "url": "https://tech-teacher.jp/kids-blog/programming-soft/",
+          "notes": "自宅PCで試せる無料ソフトの整理。まずは“触る→動く”体験づくりに。",
+          "citations": [":contentReference[oaicite:2]{index=2}"]
+        }
+      ],
+      "freelance_note": "最初の一歩は“好きの点火”。無料で成功体験を積ませると、後の独学コストが大きく下がります。"
+    },
+    {
+      "h2": "オンライン教室という選択肢（送迎ゼロで続けやすい）",
+      "body": "自宅完結・双方向サポートで“わからない”を放置しない学びに。家庭の負担が小さく、共働きでも回しやすい。",
+      "resources": [
+        {
+          "name": "CodeCampKIDS Online",
+          "url": "https://online.codecampkids.jp/",
+          "what_you_get": ["ビジュアル→本格開発へのステップ設計", "小中学生向けの体系的カリキュラム"],
+          "provider_info": "CodeCamp（フューチャー社グループ）の運営",
+          "citations": [":contentReference[oaicite:3]{index=3}"]
+        }
+      ],
+      "freelance_note": "“質問できる場”があると継続率が上がります。詰まった瞬間のフォローが投げ出し防止に直結。"
+    },
+    {
+      "h2": "無料サイト vs アプリ vs オンライン教室（かんたん比較）",
+      "table_columns": ["比較軸", "無料サイト/ソフト", "学習アプリ", "オンライン教室"],
+      "table_rows": [
+        ["費用", "無料/低コスト", "無料〜低コスト", "月額/受講料あり"],
+        ["学び方", "自己学習（親の伴走があると◎）", "クイズ/演習中心・自己学習", "双方向・課題/作品づくり"],
+        ["つまずき対策", "自己解決中心", "自己解決中心", "講師が即時フォロー"],
+        ["効果の出やすさ", "興味次第で差が大", "手軽に継続しやすい", "計画的に定着しやすい"],
+        ["家庭の負担", "準備・声かけが必要", "軽め", "送迎ゼロ/計画管理が楽"]
+      ],
+      "sources_note": "コエテコ、パプナビ、Tech Teacher、各公式の公開情報をもとに一般的傾向を要約。"
+    },
+    {
+      "h2": "しっかり学びたいなら：先の教室（= ちゃんプロ）を試す",
+      "body": "無料の自宅学習で“好き”に火がついたら、テキストで“書いて動かす”Python入門へ。ちゃんプロは全8回・無料、ブラウザだけで受講でき、AI＋先生が個別にサポート。ゲーム制作で“できた！”を積み上げ、自然に次の学びへ進めます。",
+      "featured_service": {
+        "name": "ちゃんプロ",
+        "positioning": ["Scratchからの“卒業”を後押し", "Python×ゲーム制作で達成感を設計", "AIサポート＋講師の二段構え"],
+        "why_now": "大人の学び直しはコスト大。子ども時代の“点火”が長期的な差になります。",
+        "links": [
+          "https://chanpro.jp/00-lp-main?from=prtimes",
+          "https://manabikids.jp/chanpro/",
+          "https://wp358.wpx.jp/chanpro/"
+        ]
+      },
+      "transition_copy": "強制ではなく、本人の“やってみたい”が出たら——まずは無料8回から。"
+    },
+    {
+      "h2": "親子で確認する3つのポイント（強制しない）",
+      "checklist": [
+        "やってみたい気持ちはある？（興味の芽を大事に）",
+        "週1回＋復習15分の時間がとれそう？",
+        "無料体験の終わりに“次の1か月”を一緒に決められる？"
+      ],
+      "freelance_note": "実務では“作って直す”力が評価されます。小さな自動化やデータ整理でも価値は大。早い段階の成功体験が、その後の伸びを作ります。"
+    }
+  ],
+  "seo": {
+    "title": "子供のプログラミング教室はまず無料から——自宅学習→オンライン→本格入門までの地図（おすすめは最後に）",
+    "target_keyword": "ちゃんプロ 評判",
+    "meta_description": "強制ではなく“やってみたい”を大切に。無料サイト・学習アプリ・オンライン教室を比較し、しっかり学びたい家庭には全8回無料の『ちゃんプロ』を紹介します。"
+  },
+  "cta": {
+    "soft": "まずは無料の自宅学習で“動いた！”を体験。",
+    "primary": "興味が続いたら、無料8回の『ちゃんプロ』で“書いて動かす”Pythonへ。"
+  },
+  "sources": [
+    {
+      "title": "子ども向け無料プログラミング学習サイトおすすめ7選！",
+      "url": "https://coeteco.jp/articles/10246",
+      "cite": ":contentReference[oaicite:4]{index=4}"
+    },
+    {
+      "title": "【小学生】完全無料でできるプログラミング学習方法！",
+      "url": "https://papu-navi.com/free-programming-learning/",
+      "cite": ":contentReference[oaicite:5]{index=5}"
+    },
+    {
+      "title": "CodeCampKIDS Online（公式）",
+      "url": "https://online.codecampkids.jp/",
+      "cite": ":contentReference[oaicite:6]{index=6}"
+    },
+    {
+      "title": "【無料】小学生におすすめのプログラミングソフト4選！",
+      "url": "https://tech-teacher.jp/kids-blog/programming-soft/",
+      "cite": ":contentReference[oaicite:7]{index=7}"
+    }
+  ]
+}

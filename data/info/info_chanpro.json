@@ -1,0 +1,411 @@
+{
+  "primary_service": {
+    "service_name": "ちゃんと身につくプログラミング(ちゃんプロ)",
+    "company": "株式会社Mined",
+    "target_age": "小学生・中学生",
+    "format": "オンラインライブ授業",
+    "primary_language": "Python",
+    "entry_price": "完全無料(全8回・2ヶ月)",
+    "monthly_price": "要問い合わせ(初級コース以降)",
+    "credit_card_required": "不要",
+    "official_url": "https://chanpro.jp/"
+  },
+
+  "competitor_schools": [
+    {
+      "school_name": "Tech Kids School(テックキッズスクール)",
+      "school_info": {
+        "company": "株式会社CA Tech Kids(サイバーエージェントグループ)",
+        "founded": "2013年",
+        "students": "延べ3万人以上(2020年時点)",
+        "target_age": "小学1年生〜中学3年生",
+        "format": "渋谷校(対面)、オンライン校",
+        "official_url": "https://techkidsschool.jp/"
+      },
+      "pricing": {
+        "monthly_fee": "20,900円(税込)/月",
+        "material_fee": "2,200円(税込)/月",
+        "pc_rental": "4,400円(税込)/月(希望者のみ)",
+        "entry_fee": "0円",
+        "total_monthly_cost": "23,100円〜27,500円(PC レンタル含む)",
+        "lesson_frequency": "月3回(週1回)",
+        "lesson_duration": "120分/回"
+      },
+      "courses": {
+        "entry_stage": {
+          "target": "小学1-2年生",
+          "content": "Scratchでプログラミングの基礎、PC操作に慣れる"
+        },
+        "junior_stage": {
+          "target": "小学1-2年生",
+          "content": "Entry Stageより少し複雑な内容"
+        },
+        "first_stage": {
+          "target": "小学3年生以上",
+          "content": "Scratchを用いてプログラミングの基本概念を習得"
+        },
+        "second_stage": {
+          "target": "First Stage修了者",
+          "content": "Swift、C#などの本格的なテキストプログラミング、3Dゲーム開発(Unity)"
+        }
+      },
+      "languages_and_tools": [
+        "Scratch",
+        "Swift",
+        "C#",
+        "Unity",
+        "Illustrator",
+        "Blender"
+      ],
+      "features": [
+        "本格的なプログラミング言語(Swift、C#)を学べる",
+        "デザイン(Illustrator、Blender)やプレゼンテーションも学習",
+        "プロと同じツールを使用",
+        "サイバーエージェントグループ運営の信頼性",
+        "大学生メンターによる少人数制指導",
+        "無料イベント多数開催"
+      ],
+      "strengths": [
+        "実績豊富(2013年〜)",
+        "本格的なアプリ・ゲーム開発スキル習得可能",
+        "総合的なクリエイティブ力育成",
+        "IT企業直営の高品質カリキュラム"
+      ],
+      "weaknesses": [
+        "料金が高め(月2万円以上)",
+        "教室が渋谷のみ(対面の場合)",
+        "大学生メンターの人員不足の指摘あり",
+        "PC レンタル費用が別途必要"
+      ],
+      "reviews_summary": {
+        "positive": [
+          "本格的なスキルが身につく",
+          "マンツーマンに近い丁寧な指導",
+          "飽きさせない工夫がある",
+          "優秀な講師陣から刺激を受けられる"
+        ],
+        "negative": [
+          "料金が高い",
+          "教室数が少ない(渋谷のみ)",
+          "やる気のない子もいる",
+          "交通費がかかる"
+        ]
+      },
+      "short_term_programs": {
+        "tech_kids_camp": {
+          "description": "マインクラフト・ロブロックスを使った短期集中ワークショップ",
+          "duration": "2〜4日間",
+          "pricing": "2Daysプラン: 41,140円(税込)、3Daysプラン: 59,290円(税込)、4Daysプラン: 76,230円(税込)",
+          "target": "小学1年生〜中学生"
+        }
+      }
+    },
+    {
+      "school_name": "LITALICOワンダー",
+      "school_info": {
+        "company": "株式会社LITALICO",
+        "target_age": "年長〜高校生",
+        "format": "教室(東京・神奈川・埼玉に17教室)、オンライン(完全個別)",
+        "business_model": "直営店舗のみ(フランチャイズなし)",
+        "official_url": "https://wonder.litalico.jp/"
+      },
+      "pricing": {
+        "classroom": {
+          "monthly_fee": "1回あたり5,775円〜",
+          "frequency": "月4回〜選択可能",
+          "monthly_cost_example": "月4回の場合: 約23,100円"
+        },
+        "online": {
+          "monthly_fee": "1回あたり4,400円〜",
+          "frequency": "月4回〜選択可能",
+          "monthly_cost_example": "月4回の場合: 22,000円〜",
+          "format": "完全マンツーマン個別指導"
+        },
+        "entry_fee": "16,500円(税込)",
+        "lesson_duration": "90分/回",
+        "notes": "教室により料金が異なる、ゲーム&アプリコースは教材費不要"
+      },
+      "courses": [
+        {
+          "name": "ゲーム&アプリプログラミングコース",
+          "target": "年長〜高校生",
+          "content": "ScratchやUnityを使ったゲーム・アプリ開発",
+          "material_fee": "不要"
+        },
+        {
+          "name": "ロボットクリエイトコース",
+          "target": "年長〜小学3年生",
+          "content": "レゴブロック(LEGO Education SPIKE)でロボット制作とプログラミング"
+        },
+        {
+          "name": "ロボットテクニカルコース",
+          "target": "小学3年生〜高校生",
+          "content": "より複雑なロボット制作とプログラミング"
+        },
+        {
+          "name": "デジタルファブリケーションコース",
+          "target": "小学3年生〜高校生",
+          "content": "3Dプリンター、レーザーカッターを使ったものづくり",
+          "notes": "教室のみ(オンライン不可)"
+        },
+        {
+          "name": "マインクラフトクリエイトコース",
+          "target": "年長〜",
+          "content": "マインクラフトを使ったプログラミング学習"
+        }
+      ],
+      "features": [
+        "カリキュラムなしの完全オーダーメイド授業",
+        "子どもの「やりたいこと」を自由に実現",
+        "スタッフ1人対生徒1〜4人の少人数制(教室)",
+        "完全マンツーマン(オンライン)",
+        "発達障害児の受け入れ実績豊富",
+        "講師の研修制度が充実(メンター等級制度)",
+        "年長〜高校生まで幅広く対応"
+      ],
+      "strengths": [
+        "個性を最大限に伸ばすオーダーメイド教育",
+        "子どもが飽きるまでやらせてくれる自由度",
+        "発達障害や個性的な子どもに特に強い",
+        "直営店舗のみで品質が統一",
+        "ロボット、3Dプリンターなど選択肢が豊富"
+      ],
+      "weaknesses": [
+        "料金が高め",
+        "教室が首都圏のみ(東京・神奈川・埼玉)",
+        "カリキュラムがないため進度が見えにくい",
+        "遊んでいるように見える場合がある",
+        "体験予約が埋まりやすい"
+      ],
+      "reviews_summary": {
+        "positive": [
+          "子どもの長所を伸ばしてくれる",
+          "好きなことを深く学べる",
+          "発達障害の子の特性が長所になる",
+          "講師が優しく親しみやすい",
+          "自己肯定感が育まれる"
+        ],
+        "negative": [
+          "料金が高い",
+          "カリキュラムがないので不安",
+          "教室が遠い",
+          "自由すぎて方向性が定まらない場合も"
+        ]
+      },
+      "special_programs": {
+        "summer_lab": {
+          "description": "夏休みの特別講習",
+          "content": "ドローン、3Dプリンター、プログラミングなど多彩なワークショップ",
+          "duration": "90分〜2日間",
+          "pricing": "5,400円〜8,640円程度(コースにより異なる)"
+        }
+      }
+    },
+    {
+      "school_name": "QUREO(キュレオ)プログラミング教室",
+      "school_info": {
+        "company": "株式会社キュレオ(サイバーエージェントグループ×スプリックス共同開発)",
+        "founded": "2019年4月(全国展開開始)",
+        "classroom_count": "全国3,000教室以上(2024年時点)",
+        "target_age": "小学2年生以上〜高校生",
+        "format": "教室(全国47都道府県)、フランチャイズ展開",
+        "official_url": "https://qureo.jp/"
+      },
+      "pricing": {
+        "monthly_fee": "9,900円(税込)〜",
+        "entry_fee": "教室により異なる(概ね10,000円程度)",
+        "material_fee": "無料",
+        "pc_rental": "教室により異なる(基本は教室のPCを使用)",
+        "lesson_frequency": "月4回",
+        "lesson_duration": "60分/回",
+        "notes": "教室により料金が異なるため要問い合わせ"
+      },
+      "courses": {
+        "elementary_course": {
+          "target": "小学生",
+          "duration": "約3ヶ月",
+          "intro_material": "マインクラフト(教育版)",
+          "main_material": "QUREO(ビジュアルプログラミング)",
+          "learning_period": "約2〜3年で高校卒業程度の基礎知識習得",
+          "concepts": "プログラミング基礎30概念"
+        },
+        "junior_high_high_school_course": {
+          "target": "中学生・高校生",
+          "content": "JavaScript、HTML、CSS",
+          "duration": "約2年",
+          "projects": "ホームページ、アプリ作成"
+        }
+      },
+      "features": [
+        "ゲーム感覚で楽しく学べる教材",
+        "魅力的なキャラクターとストーリー設定",
+        "個別指導で一人ひとりのペースに対応",
+        "プログラミング能力検定に準拠",
+        "全国3,000教室以上で通いやすい",
+        "Tech Kids School監修の教材",
+        "教材費無料でコスパが良い"
+      ],
+      "learning_tools": [
+        "QUREO(ビジュアルプログラミング)",
+        "マインクラフト(教育版・導入期)",
+        "JavaScript",
+        "HTML",
+        "CSS"
+      ],
+      "certification": {
+        "name": "プログラミング能力検定",
+        "levels": "レベル1〜4に準拠",
+        "benefit": "カリキュラムが検定対策になる"
+      },
+      "strengths": [
+        "教室数が圧倒的に多く通いやすい",
+        "料金が比較的安い(月1万円程度)",
+        "教材費無料でコスパ良好",
+        "ゲーミフィケーションで継続しやすい",
+        "プログラミング検定対策が組み込まれている",
+        "2〜3年で高校卒業程度のスキル習得可能",
+        "無料体験が充実"
+      ],
+      "weaknesses": [
+        "フランチャイズのため教室により質が異なる",
+        "生徒同士の交流が少ない",
+        "個別学習のため一体感に欠ける",
+        "ストーリーが男の子向け",
+        "描画機能がない",
+        "送り迎えが必要(対面教室の場合)"
+      ],
+      "reviews_summary": {
+        "positive": [
+          "ゲーム感覚で楽しい",
+          "タイピングスキルが身につく",
+          "論理的思考力が向上",
+          "教材の質が高い",
+          "料金が安い",
+          "近くに教室がある"
+        ],
+        "negative": [
+          "友達との交流がない",
+          "黙々と学ぶだけでつまらない",
+          "教室により指導レベルが違う",
+          "カリキュラムが固定的"
+        ]
+      },
+      "official_manga": {
+        "title": "キュレオ プログラミングチャレンジャーズ!",
+        "publisher": "小学館「コロコロイチバン!」",
+        "release_date": "2023年2月8日(単行本)",
+        "description": "QUREOの教材を題材にしたマンガでプログラミングへの関心を喚起"
+      }
+    }
+  ],
+
+  "detailed_comparison_table": {
+    "price_comparison": {
+      "chanpro": {
+        "entry": "完全無料(2ヶ月・全8回)",
+        "monthly": "要問い合わせ(初級以降)",
+        "credit_card": "不要",
+        "initial_cost": "0円"
+      },
+      "tech_kids_school": {
+        "entry": "無料体験あり",
+        "monthly": "20,900円+教材費2,200円=23,100円〜",
+        "initial_cost": "0円",
+        "pc_rental": "4,400円/月(希望者)",
+        "lesson_frequency": "月3回(120分/回)"
+      },
+      "litalico_wonder": {
+        "entry": "無料体験あり、入会金16,500円",
+        "monthly_classroom": "約23,100円(月4回)",
+        "monthly_online": "22,000円〜(月4回、マンツーマン)",
+        "lesson_duration": "90分/回"
+      },
+      "qureo": {
+        "entry": "無料体験あり、入会金約10,000円",
+        "monthly": "9,900円〜",
+        "material_fee": "無料",
+        "lesson_frequency": "月4回(60分/回)"
+      }
+    },
+    "format_comparison": {
+      "chanpro": "完全オンライン(ライブ授業)",
+      "tech_kids_school": "渋谷校(対面)、オンライン校",
+      "litalico_wonder": "教室(首都圏17校)、オンライン(マンツーマン)",
+      "qureo": "全国3,000教室以上(対面のみ)"
+    },
+    "language_comparison": {
+      "chanpro": "Python特化",
+      "tech_kids_school": "Scratch → Swift/C#/Unity",
+      "litalico_wonder": "Scratch、Unity、ロボット等多様",
+      "qureo": "ビジュアルプログラミング → JavaScript/HTML/CSS"
+    },
+    "target_age_comparison": {
+      "chanpro": "小学生・中学生(Scratch経験者推奨)",
+      "tech_kids_school": "小学1年生〜中学3年生",
+      "litalico_wonder": "年長〜高校生",
+      "qureo": "小学2年生〜高校生"
+    },
+    "teaching_style_comparison": {
+      "chanpro": "AIサポート+ライブ授業、個別チャット質問可能",
+      "tech_kids_school": "大学生メンター、少人数制",
+      "litalico_wonder": "完全オーダーメイド、カリキュラムなし、スタッフ1:生徒4(教室)、1:1(オンライン)",
+      "qureo": "個別指導、カリキュラム固定"
+    }
+  },
+
+  "use_case_recommendations": {
+    "choose_chanpro_if": [
+      "Scratch経験者で次のステップを探している",
+      "Pythonを本格的に学ばせたい",
+      "無料で長期間試したい(2ヶ月・全8回)",
+      "オンラインで完結させたい",
+      "AIサポートとライブ授業の両方が欲しい",
+      "クレジットカード登録なしで始めたい"
+    ],
+    "choose_tech_kids_school_if": [
+      "本格的なアプリ・ゲーム開発スキルを身につけたい",
+      "Swift、C#などプロ仕様の言語を学びたい",
+      "デザインやプレゼンも総合的に学ばせたい",
+      "渋谷に通える(または遠方でもオンライン可能)",
+      "料金は高くても質を重視"
+    ],
+    "choose_litalico_wonder_if": [
+      "子どもの個性や興味を最優先したい",
+      "カリキュラムに縛られず自由に学ばせたい",
+      "発達障害や個性的な子ども",
+      "ロボットや3Dプリンターにも興味がある",
+      "完全マンツーマン指導を希望(オンライン)",
+      "首都圏在住"
+    ],
+    "choose_qureo_if": [
+      "自宅近くの教室で学ばせたい",
+      "料金を抑えたい(月1万円程度)",
+      "プログラミング検定対策をしたい",
+      "ゲーム感覚で楽しく学んでほしい",
+      "教材費を節約したい"
+    ]
+  },
+
+  "market_positioning": {
+    "chanpro": {
+      "position": "Python特化型オンライン入門教室",
+      "differentiation": "完全無料入門(2ヶ月)、AI×ライブ授業、クレカ不要",
+      "competitive_advantage": "Scratch卒業生のPython移行に最適"
+    },
+    "tech_kids_school": {
+      "position": "プレミアム総合IT教育",
+      "differentiation": "本格言語、デザイン、プレゼン含む総合力育成",
+      "competitive_advantage": "サイバーエージェント直営、実績最多"
+    },
+    "litalico_wonder": {
+      "position": "個性最適型オーダーメイド教室",
+      "differentiation": "完全カスタマイズ、発達障害児サポート",
+      "competitive_advantage": "子ども一人ひとりに合わせた自由度"
+    },
+    "qureo": {
+      "position": "全国展開型スタンダード教室",
+      "differentiation": "圧倒的教室数、低価格、検定対応",
+      "competitive_advantage": "通いやすさとコスパ"
+    }
+  }
+}

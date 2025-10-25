@@ -1,0 +1,222 @@
+{
+  "primary_keyword": "プログラボ　評判",
+  "overview": {
+    "description": "ロボットプログラミング教育を通じて、未来を担う子供達の「夢を実現するチカラ」を育むロボットプログラミング教室",
+    "operator": "東京メトロ",
+    "target_age": "年長～中学生",
+    "features": [
+      "入会金0円",
+      "教材費0円",
+      "初心者歓迎",
+      "駅近15校",
+      "少人数制クラス（平均約10名のクラスを約3名の講師がサポート）",
+      "授業の振替システム",
+      "レゴ®教材使用"
+    ]
+  },
+  "educational_philosophy": {
+    "goals": [
+      "楽しい！だから続けられる",
+      "できた！だから自信がつく",
+      "筋道を立てて考える力を育む",
+      "物事を深く考える力を育む",
+      "最後までやり抜く力を育む"
+    ]
+  },
+  "courses": {
+    "new_enrollment_courses": {
+      "start_period": "春期（4月～）※随時入塾可能",
+      "beginner": {
+        "name": "ビギナー",
+        "target": "年長・小学1年生～",
+        "duration": "50分",
+        "frequency": "月2回または月3回",
+        "tuition": {
+          "monthly_2": "7,400円（税込8,140円）",
+          "monthly_3": "10,700円（税込11,770円）"
+        },
+        "description": "タブレット端末使用、プログラミングの基礎、モーターやセンサーの仕組みを学ぶ"
+      },
+      "standard_1": {
+        "name": "スタンダードⅠ",
+        "target": "小学2年生～",
+        "duration": "50分",
+        "frequency": "月3回",
+        "tuition": "10,700円（税込11,770円）",
+        "description": "パソコンでのプログラミング開始、マウスの使い方やキー入力を学ぶ、クラス内競技実施"
+      },
+      "standard_2": {
+        "name": "スタンダードⅡ",
+        "target": "小学3年生～",
+        "duration": "90分",
+        "frequency": "月3回",
+        "tuition": "13,500円（税込14,850円）",
+        "description": "プログラミングの社会での活用を学ぶ、プログラボカップなど大会出場"
+      }
+    },
+    "autumn_enrollment_courses": {
+      "start_period": "秋期（9月～）※随時入塾可能",
+      "pre_beginner": {
+        "name": "プレビギナー",
+        "target": "年長・小学1年生～",
+        "duration": "50分",
+        "frequency": "月3回",
+        "tuition": "10,700円（税込11,770円）"
+      },
+      "pre_standard": {
+        "name": "プレスタンダード",
+        "target": "小学2年生～",
+        "duration": "50分",
+        "frequency": "月3回",
+        "tuition": "10,700円（税込11,770円）"
+      },
+      "standard_2_express": {
+        "name": "スタンダードⅡエクスプレス",
+        "target": "小学3年生～",
+        "duration": "90分",
+        "frequency": "月3回",
+        "tuition": "13,500円（税込14,850円）"
+      }
+    },
+    "advanced_courses": {
+      "advanced_1": {
+        "name": "アドバンストⅠ",
+        "target": "スタンダードⅡ修了者",
+        "duration": "90分",
+        "frequency": "月3回",
+        "tuition": "13,500円（税込14,850円）",
+        "description": "アイデアシート作成、プレゼンテーション、ロボット大会出場"
+      },
+      "advanced_2": {
+        "name": "アドバンストⅡ",
+        "target": "アドバンストⅠ修了者",
+        "duration": "90分",
+        "frequency": "月3回",
+        "tuition": "14,500円（税込15,950円）",
+        "description": "micro:bit使用、自由制作、動画制作、ICTツール活用"
+      },
+      "advanced_3": {
+        "name": "アドバンストⅢ",
+        "target": "アドバンストⅡ修了者",
+        "duration": "90分",
+        "frequency": "月3回",
+        "tuition": "14,500円（税込15,950円）",
+        "description": "Scratch使用、Python学習可能"
+      },
+      "explorer": {
+        "name": "エクスプローラ",
+        "target": "アドバンストⅢ修了者",
+        "duration": "90分",
+        "frequency": "月3回",
+        "tuition": "14,500円（税込15,950円）",
+        "description": "探求テーマ設定、AI教材、電子工作デバイス、Python言語でのロボット制御"
+      }
+    }
+  },
+  "lesson_flow": [
+    {
+      "step": 1,
+      "name": "講義を聴く",
+      "description": "その日のロボットプログラミングのテーマに関連する信号や車など世の中のものの仕組みを学ぶ"
+    },
+    {
+      "step": 2,
+      "name": "ロボットの形をつくる",
+      "description": "説明を聞きながら、ロボットの形を組み立てる"
+    },
+    {
+      "step": 3,
+      "name": "ロボットの動きをプログラミングする",
+      "description": "パソコンまたはタブレットでプログラミングを行う"
+    },
+    {
+      "step": 4,
+      "name": "考えを発表する",
+      "description": "自分が作ったロボットについて、クラスメイトの前で発表する"
+    }
+  ],
+  "educational_materials": [
+    {
+      "name": "レゴ®エデュケーション SPIKE™ プライム",
+      "usage": "ビギナーコースなど"
+    },
+    {
+      "name": "レゴ®マインドストーム®EV3",
+      "usage": "各コース"
+    },
+    {
+      "name": "micro:bit",
+      "usage": "アドバンストⅡコース"
+    },
+    {
+      "name": "Scratch",
+      "usage": "アドバンストⅢコース"
+    },
+    {
+      "name": "Python",
+      "usage": "アドバンストⅢ以降"
+    }
+  ],
+  "free_trial": {
+    "available": true,
+    "duration": "約1時間〜1時間30分",
+    "types": [
+      {
+        "name": "体験会（ロボット制作＋プログラミング）",
+        "beginner_duration": "約50分",
+        "standard_2_duration": "約90分"
+      },
+      {
+        "name": "授業体験（実際の授業に参加）",
+        "beginner_duration": "約50分",
+        "standard_2_duration": "約90分",
+        "note": "一部の教室のみで実施"
+      }
+    ],
+    "description": "実際にロボットプログラミングを無料で体験可能。保護者も同席可能"
+  },
+  "achievements": {
+    "wro_world_competition": {
+      "year": 2025,
+      "status": "3年連続3回目の出場決定",
+      "location": "シンガポール",
+      "date": "2025年11月26-28日",
+      "details": "綾瀬校の生徒チームがWRO2025 Japan決勝大会のROBO MISSION【エキスパート競技】ジュニア部門で準優勝"
+    }
+  },
+  "satisfaction_rates": {
+    "satisfaction": "80%以上が満足",
+    "positive_responses": "95%以上",
+    "continuation_rate": "87.5%（年間コース終了時点）"
+  },
+  "faq": [
+    {
+      "question": "月謝以外に費用はかかりますか？",
+      "answer": "いいえ、かかりません。入会金、教材費は頂いておりません。"
+    },
+    {
+      "question": "教材を購入する必要がありますか？",
+      "answer": "いいえ、ご購入の必要はございません。使用するタブレット、パソコン、ロボット教材は全て教室でご用意してお貸出し致します。"
+    },
+    {
+      "question": "家庭でパソコンを用意する必要はあるのでしょうか？",
+      "answer": "必要な教材は全て教室でご用意し、ご家庭での宿題もございません。授業内で子どもたちが理解して組み立てからプログラミングまで行えるよう、授業を設計しております。"
+    },
+    {
+      "question": "途中から入塾することはできますか？",
+      "answer": "はい、カリキュラムの終盤を除き、入塾は随時受け付けております。途中入塾の方にもご負担なく始めていただけるよう柔軟に対応させていただきます。"
+    }
+  ],
+  "cost_comparison": {
+    "proglab": {
+      "admission_fee": "無料",
+      "material_fee": "無料",
+      "monthly_fee": "1～1.5万円",
+      "annual_cost": "12～18万円"
+    },
+    "competitor_note": "他社では入会金1～2万円、教材費2～4万円など初期費用が発生する場合がある"
+  },
+  "urls": [
+    "https://hirochoblog1.com/proglab-kuchikomi/"
+  ]
+}

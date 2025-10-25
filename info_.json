@@ -1,0 +1,84 @@
+{
+  "target_name": "GEPA (Genetic-Pareto)",
+  "persona_label": "Reflective prompt evolution optimizer for LLM systems",
+  "summary": "GEPA is a prompt optimization framework that uses natural-language reflection plus multi-objective genetic search and Pareto selection to evolve prompts for compound LLM systems. It often matches or surpasses reinforcement learning methods like GRPO with far fewer rollouts.",
+  "key_points": [
+    "Incorporates natural-language reflection on system-level trajectories (reasoning, tool calls, outputs) to diagnose issues and propose prompt updates",
+    "Uses multi-objective genetic algorithms and Pareto frontier selection to balance accuracy, diversity, and efficiency",
+    "Designed to adapt any AI system containing one or more LLM prompts; learns high-level rules from trial and error",
+    "Proposes and tests prompt edits iteratively, combining complementary lessons from different attempts",
+    "Available implementations and docs exist (GitHub repo; DSPy optimizer wrapper)"
+  ],
+  "reported_results": {
+    "vs_GRPO": {
+      "average_gain_percent": 10,
+      "max_gain_percent": 20,
+      "fewer_rollouts_x": 35,
+      "notes": "Across four tasks; can achieve large quality gains with few rollouts"
+    },
+    "vs_MIPROv2": {
+      "average_gain_percent": 10,
+      "notes": "Over two LLMs in reported benchmarks"
+    }
+  },
+  "evaluated_tasks_examples": [
+    "Multi-hop reasoning (HotpotQA)",
+    "Instruction following (IFBench)",
+    "Privacy-aware delegation (PUPA)",
+    "Retrieval-augmented verification (HoVer)"
+  ],
+  "design_components": [
+    "Reflective prompting (self-critique and improvement written in natural language)",
+    "Multi-objective genetic algorithm (selection, crossover, mutation)",
+    "Pareto frontier selection and sampling (maintain diverse, high-performing prompts)"
+  ],
+  "practical_notes": [
+    "Zero-order (no-gradient) optimization in a combinatorial space; results can be stochastic",
+    "Sample efficiency enables fewer API calls than RL in many cases",
+    "Useful both for offline prompt evolution and as an inference-time search strategy (e.g., code optimization)"
+  ],
+  "sources": [
+    {
+      "title": "GEPA: Reflective Prompt Evolution Can Outperform Reinforcement Learning (arXiv abstract)",
+      "url": "https://arxiv.org/abs/2507.19457",
+      "date_accessed": "2025-09-28"
+    },
+    {
+      "title": "GEPA: Reflective Prompt Evolution Can Outperform Reinforcement Learning (PDF)",
+      "url": "https://arxiv.org/pdf/2507.19457",
+      "date_accessed": "2025-09-28"
+    },
+    {
+      "title": "lifetechia summary: GEPA：反省的学習でLLMは強化学習を超えるか？",
+      "url": "https://lifetechia.com/gepa-reflective-prompt-evolution-outperforms-rl/",
+      "date_accessed": "2025-09-28"
+    },
+    {
+      "title": "DSPy docs: GEPA overview",
+      "url": "https://dspy.ai/api/optimizers/GEPA/overview/",
+      "date_accessed": "2025-09-28"
+    },
+    {
+      "title": "Official GitHub: gepa-ai/gepa",
+      "url": "https://github.com/gepa-ai/gepa",
+      "date_accessed": "2025-09-28"
+    },
+    {
+      "title": "Hugging Face Papers: 2507.19457",
+      "url": "https://huggingface.co/papers/2507.19457",
+      "date_accessed": "2025-09-28"
+    },
+    {
+      "title": "HN discussion (context): Reflective prompt evolution",
+      "url": "https://news.ycombinator.com/item?id=44744331",
+      "date_accessed": "2025-09-28"
+    }
+  ],
+  "title_samples": [
+    "GEPAとは？反省的プロンプト進化でRLを超える新手法の全体像",
+    "GEPAの仕組み：自然言語の反省×遺伝的探索×Pareto選択を噛み砕く",
+    "GRPOより最大20%向上＆35倍少ないロールアウト？GEPAの実力検証",
+    "実装と使い方：GitHub・DSPyで始めるGEPA最適化",
+    "GEPAの向き不向き：サンプル効率・多目的最適化・ばらつきの注意点"
+  ]
+}

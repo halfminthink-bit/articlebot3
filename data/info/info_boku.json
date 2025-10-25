@@ -1,0 +1,178 @@
+{
+  "primary_keyword": "僕のAIアカデミー 口コミ",
+  "entity": {
+    "name_ja": "僕のAIアカデミー",
+    "name_en": "Boku no AI Academy",
+    "official_site": "https://www.b-aiacademy.com/",
+    "operator_company": {
+      "name": "H&Sホールディングス株式会社",
+      "hq_address": "愛知県岡崎市正名町前川田1番3",
+      "capital_jpy": 1000000,
+      "founded": "2022-10",
+      "representative": "平岩孝之"
+    },
+    "launch_or_announcement_date": "2025-05-01"
+  },
+  "sources": [
+    "https://www.b-aiacademy.com/",
+    "https://prtimes.jp/main/html/rd/p/000000004.000158464.html",
+    "https://blolabo.com/boku-ai-academy/",
+    "https://coeteco.jp/campus/ranking/categories/programming-school/feature/artificial-intelligence"
+  ],
+  "offering": {
+    "tagline": "未経験から最短1ヶ月で、ChatGPT・画像/動画生成・資料作成など“収入に直結するAIスキル”を学べる実践型スクール。",
+    "focus": [
+      "生成AIの業務活用（ChatGPT、画像/動画生成、資料作成）",
+      "実務想定ワーク × 反復学習 × 個別指導",
+      "ポートフォolio作成と案件化支援"
+    ],
+    "learning_format": [
+      "個別指導/フィードバック",
+      "日次の課題と反復学習",
+      "受講生コミュニティ（質問・添削・交流）"
+    ],
+    "speed_claims": [
+      "最短1ヶ月で習得（サイト表記）",
+      "最短12日での収益化可能性（PR情報）"
+    ],
+    "portfolio": {
+      "max_items": 32,
+      "note": "学習活動を通じて最大32項目のポートフォリオ作成を訴求"
+    },
+    "instructors": {
+      "approx_count": 30,
+      "note": "多様なバックグラウンドの講師が在籍"
+    }
+  },
+  "pricing_campaign": {
+    "model": "月額サブスク",
+    "campaigns": [
+      {
+        "name": "サブスク6ヶ月無料",
+        "value_jpy_total": 29880
+      },
+      {
+        "name": "特典資料配布",
+        "details": "全10本・総額10万円相当"
+      }
+    ],
+    "notes": [
+      "キャンペーン内容や終了時期は変動の可能性あり。申込前の最新確認推奨。",
+      "通常価格の細目はサイト上で明確に読み取りにくい箇所がある。"
+    ]
+  },
+  "numbers": {
+    "subscription_free_months": 6,
+    "subscription_value_total_jpy": 29880,
+    "bonus_materials_count": 10,
+    "bonus_materials_est_value_jpy": 100000,
+    "portfolio_items_max": 32,
+    "instructors_approx": 30
+  },
+  "voices": [
+    {
+      "user_label": "Sさん",
+      "voice": "発信力を高める絶好の機会に。AI活用でコンテンツ制作ができるようになり、自分の思いや活動をより多くの人に伝えられるようになりました。",
+      "themes": [
+        "発信力",
+        "実務活用",
+        "自己表現"
+      ]
+    },
+    {
+      "user_label": "あんこちゃんさん",
+      "voice": "課題をこなす中で自然とスキルが身につき、毎日のフィードバックが的確でモチベーションが維持できています。",
+      "themes": [
+        "継続学習",
+        "フィードバック",
+        "スキル定着"
+      ]
+    },
+    {
+      "user_label": "H.Kさん",
+      "voice": "GammaやCanvaを使った制作が想像以上に楽しく、実務の仕事でも早速効果を感じています。",
+      "themes": [
+        "資料作成",
+        "即効性",
+        "楽しさ"
+      ]
+    },
+    {
+      "user_label": "H.Yさん",
+      "voice": "子育てと両立しながら、AIツールのおかげで効率よく学習。発表資料の表現力が上がりました。",
+      "themes": [
+        "効率化",
+        "表現力",
+        "両立"
+      ]
+    },
+    {
+      "user_label": "K.Fさん",
+      "voice": "丁寧なフィードバックでプロンプト改善が進み、より具体的で魅力的な企画が作れるようになりました。",
+      "themes": [
+        "プロンプト改善",
+        "企画力",
+        "成長実感"
+      ]
+    },
+    {
+      "user_label": "ShoTOさん",
+      "voice": "デザイン未経験でも、先生の丁寧なアドバイスで選び方や配色がわかり自信がつきました。",
+      "themes": [
+        "初心者安心",
+        "デザイン基礎",
+        "自信"
+      ]
+    }
+  ],
+  "market_context_comparison": {
+    "category_price_range_note": "AIが学べるスクールの一般的受講料は約10〜80万円、期間は1〜6ヶ月（編集記事の説明ベース）。",
+    "positioning_summary": "多くの競合がPython/機械学習まで含む“エンジニア養成”寄りなのに対し、僕のAIアカデミーは“生成AIの実務活用と副業化”への直結を強調。",
+    "competitors_samples": [
+      {
+        "name": "SAMURAI ENGINEER",
+        "example_course": "業務改善AI活用コース",
+        "price_jpy": 132000,
+        "duration": "8週間"
+      },
+      {
+        "name": "DMM WEBCAMP",
+        "example_course": "AIコース",
+        "price_jpy": 169800,
+        "duration": "4〜16週間"
+      },
+      {
+        "name": "Aidemy",
+        "example_course": "AIアプリ開発講座",
+        "price_jpy": 528000,
+        "duration": "3〜9ヶ月"
+      },
+      {
+        "name": "キカガク",
+        "example_course": "DXを推進するAI・データサイエンス人材育成コース",
+        "price_jpy": 792000,
+        "duration": "6ヶ月"
+      },
+      {
+        "name": "キカガク",
+        "example_course": "生成AIビジネス実践コース",
+        "price_jpy": 264000,
+        "duration": "2ヶ月"
+      }
+    ]
+  },
+  "strengths_opinions": [
+    "“収益化までの導線”を早い段階で提示し、学習→制作→販売までの見通しを作りやすい。",
+    "個別指導と日次のフィードバックで、未経験者でも手応えを得やすい設計。",
+    "ポートフォリオ最大32項目など、案件獲得に直結しやすいアウトプット設計が明確。"
+  ],
+  "caveats_opinions": [
+    "“最短◯日/◯ヶ月で収益化”は個人差が大きく、既存スキルや投下時間・商材次第で成果は変動する。",
+    "通常価格や総額のテキスト明示が少なく、キャンペーン終了後の比較検討がしづらい可能性。",
+    "第三者メディアの紹介はアフィリエイト色が混在するため、複数情報源でのクロスチェック推奨。"
+  ],
+  "faq_like_notes": [
+    "キャンペーンの条件は変更されることがあるため、申込前に公式で最新情報を確認してください。",
+    "“最短”表現は統計的保証ではなく、目安として解釈してください。"
+  ]
+}

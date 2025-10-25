@@ -1,0 +1,190 @@
+{
+  "company": {
+    "name_ja": "株式会社NEXT",
+    "name_en": "NEXT Inc.",
+    "address": "〒105-0012 東京都港区芝大門1-3-8 VORT芝大門II 5階・7階",
+    "established": "2015-10-27",
+    "capital_jpy": 10000000,
+    "representative": "鈴江 将人",
+    "phone": "03-5244-9650",
+    "employees": 40,
+    "business_lines": [
+      "物販事業",
+      "倉庫・物流事業",
+      "システム開発事業"
+    ],
+    "source": "https://nextjp.co.jp/next-company/"
+  },
+  "service": {
+    "name": "ACCESS（アクセス）",
+    "category": "輸出物販（ドロップシッピング）自動化システム",
+    "tagline": "1日60分から始める在庫リスクほぼゼロの物販ビジネス",
+    "overview": "商品リサーチ、商品登録、販売・在庫管理、価格最適化などを自動化し、未経験者でもEC販売を開始できる自動運用システム。ドロップシッピングを採用し在庫を持たずに運用可能。",
+    "key_points": [
+      "スキマ時間で兼業に最適（1日1時間程度の作業）",
+      "在庫レス運用でリスク低減（ドロップシッピング）",
+      "ニッチ商品中心の戦略で高い利益率を狙う（約40%例示）",
+      "数万点規模の商品を取り扱い可能",
+      "初心者向けのサポート体制（個別研修・勉強会・電話/メール・サポートサイト）"
+    ],
+    "pricing_note": "LPに『月々69,500円〜』の記載あり（詳細は説明会で案内・最大48回分割プラン）。",
+    "supports": [
+      "個別オンライン研修",
+      "合同勉強会",
+      "電話サポート",
+      "サポートサイト",
+      "メールサポート"
+    ],
+    "examples_profit_jpy": [
+      {
+        "item": "スピーカー",
+        "revenue_yen": 56308,
+        "cost_yen": 29697,
+        "other_costs_yen": 10872,
+        "profit_yen": 15739,
+        "profit_rate_pct": 27.9
+      },
+      {
+        "item": "某有名アニメのフィギュア",
+        "revenue_yen": 24177,
+        "cost_yen": 14800,
+        "other_costs_yen": 1941,
+        "profit_yen": 7436,
+        "profit_rate_pct": 30.7
+      },
+      {
+        "item": "プラスチック収納ケースセット",
+        "revenue_yen": 10707,
+        "cost_yen": 3897,
+        "other_costs_yen": 1357,
+        "profit_yen": 5467,
+        "profit_rate_pct": 51.07
+      },
+      {
+        "item": "GPS発信機（4個）",
+        "revenue_yen": 115288,
+        "cost_yen": 68000,
+        "other_costs_yen": 14696,
+        "profit_yen": 32592,
+        "profit_rate_pct": 28.2
+      }
+    ],
+    "target_users": [
+      "新規事業・副業を始めたい経営者・個人事業主・会社員"
+    ],
+    "citations": [
+      {
+        "claim": "1日60分・在庫リスクほぼゼロ・ニッチ商品戦略・サポート体制",
+        "source_url": "https://nextjp.co.jp/access/g.html"
+      },
+      {
+        "claim": "月々69,500円〜",
+        "source_url": "https://nextjp.co.jp/access/lp/buppansystem/go02.html"
+      }
+    ],
+    "payment_options": {
+      "upfront": true,
+      "installments": {
+        "available": true,
+        "approx_monthly_jpy": 70000,
+        "max_installments": 48,
+        "notes": "複数の分割プランを用意。詳細はオンライン合同説明会で案内。"
+      },
+      "notes": "初期費用は一括／分割から選択可。"
+    },
+    "operations_flow": {
+      "general_ec": [
+        "買付",
+        "出品",
+        "注文",
+        "発送"
+      ],
+      "access_model": [
+        "出品",
+        "注文",
+        "取り寄せ",
+        "発送"
+      ]
+    },
+    "inventory_risk_profile": "受注後仕入れのため、売れ残りリスクがほぼゼロに近い。",
+    "positioning": "自社の物販事業で蓄積したノウハウを反映した物販自動化システム。"
+  },
+  "faq": [
+    {
+      "q": "なんで本部だけで独占的にシステムを使用しないの？",
+      "a": "ECサイトのアカウントの作成数に上限があるため、弊社で独占するより他の方にもシステムを使ってもらった方が長期的な本部のストック収入となるためです。加えて、システム開発に多額の先行投資を行ったため回収スピードを高めたいからでもあります。",
+      "source": "https://nextjp.co.jp/access/g.html"
+    },
+    {
+      "q": "会社員でも始めることは可能ですか？",
+      "a": "はい。もちろん可能です。今後独立を検討している、もしくはスキマ時間を使って兼業をしたいと考える会社員の方にもオススメです。すでにシステムを使って売上を作っている方にも、そのような方がいらっしゃいますのでご安心下さい。",
+      "source": "https://nextjp.co.jp/access/g.html"
+    },
+    {
+      "q": "ACCESSを利用するメリットは？",
+      "a": "本来個人だと輸出のインポーターや海外倉庫の納品にかなりハードルがあり、商品選定に対する時間コストや在庫リスク等、様々な参入障壁があるが、アクセスを利用することで、個人では到底出来なかった世界展開ビジネスを在宅で個人でも出来るようになります。",
+      "source": "https://nextjp.co.jp/access/g.html"
+    },
+    {
+      "q": "いますぐ取り組んだ方がいい理由は？",
+      "a": "市場に対して競合が少ない為、今参入することで競合優位性を得ることが可能です。",
+      "source": "https://nextjp.co.jp/access/g.html"
+    },
+    {
+      "q": "円安でも問題なく利益を出すことはできますか？",
+      "a": "はい。むしろ円安が有利に働きます。円安の場合、日本の商品を外国から見た時に安価で手に入れられることになり、海外での価格競争に強くなります。",
+      "source": "https://nextjp.co.jp/access/g.html"
+    },
+    {
+      "q": "システムの導入に費用はかかりますか？",
+      "a": "はい。詳細の金額は説明会にてお伝えしますが、一括払いに加え、最大48回払いの分割プランを用意しています。導入費用に関するご相談も、説明会にてお気軽にお尋ねください。",
+      "source": "https://nextjp.co.jp/access/g.html"
+    }
+  ],
+  "additional_notes": {
+    "market_context": "円安ドル高が追い風。輸出に有利で利益アップが見込める記述あり。",
+    "support_program": "新規事業立ち上げサポート（全5回研修）、FAQ資料、収益シミュレーション提供。"
+  },
+  "sources": [
+    {
+      "title": "1日60分でできる輸出物販システムACCESS（汎用LP）",
+      "url": "https://nextjp.co.jp/access/g.html"
+    },
+    {
+      "title": "1日60分でできる輸出物販システムACCESS（go02 LP）",
+      "url": "https://nextjp.co.jp/access/lp/buppansystem/go02.html"
+    },
+    {
+      "title": "会社概要 – 株式会社NEXT(ネクスト)",
+      "url": "https://nextjp.co.jp/next-company/"
+    },
+    {
+      "title": "NEXTは本当に儲からない？口コミから真実を調査（Wantedly）",
+      "url": "https://www.wantedly.com/users/158060455/post_articles/883470"
+    },
+    {
+      "title": "User-provided supplemental text about ACCESS pricing, market, risk, and effort",
+      "url": "about:user_provided_text_2025-09-26"
+    }
+  ],
+  "last_crawled_at": "2025-09-26T13:27:11+09:00",
+  "market": {
+    "ec_market_growth": "スマホとインターネット普及に伴い年々拡大している市場。参入適性が高いと記載。",
+    "success_probability_note": "100%成功保証ではないが、しっかり取り組めば一定の利益を見込める可能性がある。"
+  },
+  "disclosure_policy": {
+    "public_detail_limitation": "詳細情報はむやみに公開しない方針。インターネット上の情報は限定的。",
+    "reasoning": "多くのパートナーが有償で真剣に取り組んでいる事情を踏まえた配慮。"
+  },
+  "performance_claims": {
+    "monthly_sales_range_jpy": "数百万円〜1,000万円超",
+    "statement": "成功者が多数いる旨の記載あり。詳細は公式YouTubeチャンネルのインタビュー等で紹介。"
+  },
+  "work_ethic": {
+    "not_passive_income": true,
+    "requires_consistent_effort": true,
+    "support_usage": "アクシデントや不明点があればサポートを活用しつつ、コツコツ継続する前提。",
+    "relationship_model": "株式会社NEXTとパートナーの信頼関係を前提にビジネスを運営。"
+  },
+  "last_updated_at": "2025-09-26T13:33:57+09:00"
+}

@@ -1,0 +1,20 @@
+{
+  "stance_overall": 0.7,
+  "order_strategy": "OUTCOME_FIRST",
+  "shuffle_degree": 1,
+  "seed": 99,
+  "constraints": {
+    "lead_first": true,
+    "summary_last": true
+  },
+  "focus_weights": {
+    "成果": 0.9,
+    "営業伴走": 0.7,
+    "1on1反復": 0.6,
+    "料金": 0.5
+  },
+  "kw_placement_hint": {
+    "primary": ["H1", "H2", "導入"],
+    "secondary": ["結語"]
+  }
+}

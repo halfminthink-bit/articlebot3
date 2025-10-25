@@ -1,0 +1,26 @@
+{
+  "stance_overall": 0.8,
+  "order_strategy": "PRICE_FIRST",
+  "shuffle_degree": 2,
+  "seed": 42,
+  "constraints": {
+    "lead_first": true,
+    "summary_last": true,
+    "dependencies": [
+      ["料金", "判断軸"], 
+      ["評判/真偽", "数字で裏付け"]
+    ]
+  },
+  "focus_weights": {
+    "料金": 0.95,
+    "営業伴走": 0.8,
+    "1on1反復": 0.7,
+    "数字で裏付け": 0.6,
+    "講師体制": 0.5,
+    "保証制度": 0.5
+  },
+  "kw_placement_hint": {
+    "primary": ["H1", "H2", "導入"],
+    "secondary": ["中盤"]
+  }
+}

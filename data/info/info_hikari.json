@@ -1,0 +1,168 @@
+{
+  "provider": "ASAHIネット",
+  "primary_keyword": "AsahiNet 光 評判",
+  "services": [
+    {
+      "name": "AsahiNet 光（光コラボ）",
+      "url": "https://asahi-net.jp/service/ftth/hikari/",
+      "speeds": ["1Gbps（ファミリー/マンション）", "10Gbps（クロス）"],
+      "ipv6": true,
+      "contract_term": "契約期間の縛りなし",
+      "plans": [
+        {
+          "course": "ファミリー（1Gbps）",
+          "monthly_fee": { "months_2_to_20": 4818, "after_21": 5698 },
+          "initial_fees": { "admin": 880, "construction": 22000 },
+          "campaign": {
+            "cashback": 40000,
+            "monthly_discount": 880,
+            "apply_window": "2025-10-01 〜 2026-02-01"
+          }
+        },
+        {
+          "course": "マンション（1Gbps）",
+          "monthly_fee": { "months_2_to_20": 3608, "after_21": 4488 },
+          "initial_fees": { "admin": 880, "construction": 22000 },
+          "campaign": {
+            "cashback": 40000,
+            "monthly_discount": 880,
+            "apply_window": "2025-10-01 〜 2026-02-01"
+          }
+        }
+      ],
+      "area_note": "全国（10Gは一部都道府県）",
+      "notes": [
+        "フレッツ光からの転用・他社コラボからの事業者変更にも対応",
+        "最大速度は規格上の理論値。実効速度は環境・混雑で低下"
+      ]
+    },
+    {
+      "name": "ASAHIネット LTE（ANSIM）",
+      "url": "https://asahi-net.jp/service/mobile/lte/",
+      "network": "docomo",
+      "status_notes": ["通話SIM・データSIM（SMSあり）の新規申込は原則停止。会員のみ申込可"],
+      "plans": [
+        {
+          "type": "データSIM",
+          "variants": [
+            { "plan": "3GB", "monthly": 990 },
+            { "plan": "7GB", "monthly": 2178 },
+            { "plan": "20GB", "monthly": 4730 },
+            { "plan": "50GB", "monthly": 11550 },
+            { "plan": "1日110MB", "monthly": 990 }
+          ]
+        },
+        {
+          "type": "データSIM（SMSあり）",
+          "variants": [
+            { "plan": "3GB", "monthly": 1122 },
+            { "plan": "7GB", "monthly": 2310 },
+            { "plan": "20GB", "monthly": 4862 },
+            { "plan": "50GB", "monthly": 11682 },
+            { "plan": "1日110MB", "monthly": 1122 }
+          ]
+        }
+      ],
+      "initial_fees": { "sim_pack": 3300 },
+      "throttle": {
+        "monthly_cap_exceeded": "当月末まで200kbps",
+        "daily_110mb_plan": "当日200kbps"
+      },
+      "options": [
+        "データ繰り越し（翌月末まで）",
+        "容量チャージ：500MBあたり550円",
+        "固定IP対応（20/50GB時は固定IPセット割で固定IP月額-300円）",
+        "他接続サービスとのセット割（毎月最大-200円）"
+      ]
+    },
+    {
+      "name": "ASAHIネット WiMAX +5G",
+      "url": "https://asahi-net.jp/service/mobile/wimax5g/",
+      "speeds": ["下り最大3.5Gbps以上（規格値）"],
+      "modes": [
+        "スタンダード：月間データ容量無制限",
+        "プラスエリアモード：+1,100円/月（利用月のみ、au 4G/5G広域・月30GB上限）"
+      ],
+      "plans": [
+        {
+          "name": "ギガ放題プラス",
+          "monthly_fee": 4928,
+          "payment_image": { "months_2_to_27": 3828, "after_28": 4928 }
+        },
+        {
+          "name": "ギガ放題プラス（固定IPアドレスプラン）",
+          "monthly_fee": 6578,
+          "payment_image": { "months_2_to_27": 5478, "after_28": 6578 }
+        }
+      ],
+      "device_price": 27720,
+      "initial_fees": { "registration": 3300 },
+      "options": [
+        "固定IPv4グローバルIPの提供プランあり",
+        "他接続サービスとのセット割（-200円/月）"
+      ]
+    }
+  ],
+  "third_party_review": {
+    "site": "NETRAISE（next-internet.info）",
+    "url": "https://next-internet.info/media/asahinet-hikari/",
+    "last_updated": "2025-09-01",
+    "highlights": [
+      "月額は比較的安価",
+      "auユーザーはセット割で最大1,200円/月割引の言及あり",
+      "開通工事費は実質0円の解説",
+      "「1年後から無料解約」との表現あり（公式の“縛りなし”表記とは整合性要確認）"
+    ]
+  },
+  "third_party_reviews": [
+    {
+      "site": "mybest",
+      "context": "ドコモ光×ASAHIネット（プロバイダ比較・実測）",
+      "url": "https://my-best.com/products/198552",
+      "updated": "2025-04-25",
+      "score_summary": {
+        "overall": 3.27,
+        "ranking_note": "21商品の中で20位",
+        "speed": 4.62,
+        "price": 3.00,
+        "router_rental": 3.00,
+        "latency": 4.65,
+        "measured_down_mbps": 585.09
+      },
+      "pros": [
+        "高画質動画も快適な実効速度",
+        "IPv6が手続き不要で使える"
+      ],
+      "cons": [
+        "タイプBで基本料金が高め（実質料金も高い傾向）",
+        "無料Wi-Fiルーターレンタル／訪問サポートなし"
+      ],
+      "who_should_choose": ["通信速度重視の人"],
+      "who_should_avoid": [
+        "コスト重視の人",
+        "無料ルーターレンタルや訪問サポートを求める人"
+      ]
+    },
+    {
+      "site": "mybest",
+      "context": "プロバイダ総合ランキング内でのAsahiNet評価",
+      "url": "https://my-best.com/10669",
+      "updated": "2025-10-02",
+      "highlights": [
+        "速度は十分だが、割引額が少なく実質料金は高めという評価",
+        "AsahiNetの総合スコア・順位の掲載あり"
+      ]
+    },
+    {
+      "site": "mybest",
+      "context": "Asahi Net × auひかり（au/UQユーザー向け割引に言及）",
+      "url": "https://my-best.com/products/587049",
+      "updated": "不明",
+      "highlights": [
+        "auまたはUQ mobileユーザーがお得な割引あり",
+        "速度は高評価の一方、料金面では『下がってほしい』等の口コミも"
+      ],
+      "note": "本ページはAsahiNet光（光コラボ）ではなく、auひかりのプロバイダとしてのAsahi Netの評価。サービス体系が異なる点に留意。"
+    }
+  ]
+}

@@ -1,0 +1,13 @@
+{
+  "name": "外部女性視点・業界誌（企業寄り）",
+  "politeness": "常体",
+  "temperature": "静かな熱",
+  "metaphor_rate": "低",
+  "subject_usage": "主語省略中心",
+  "stance": "擁護寄り",
+  "stance_weight": 0.8,
+  "hedging": "中",
+  "bullet_policy": "数値のみ要所で",
+  "ads_policy": "PRや提供がある場合は明記。断定的断罪は避ける",
+  "notes": "評判のノイズより工程と具体の開示を評価する。価格は工程密度で読む。『怪しいか』より『回せるか』の軸。"
+}
