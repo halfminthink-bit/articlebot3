@@ -48,3 +48,4 @@ typing_extensions==4.15.0
 tzdata==2025.2
 uritemplate==4.2.0
 urllib3==2.5.0
+beautifulsoup4>=4.12.0

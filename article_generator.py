@@ -1,7 +1,7 @@
 # article_generator.py
 # -*- coding: utf-8 -*-
 """
-記事生成スクリプト（リファクタ版）
+記事生成スクリプト（リファクタ版・temperature削除版）
 旧three_call_article.pyの機能を維持しつつ、lib/配下のモジュールを使用
 
 使い方:
@@ -129,10 +129,9 @@ def generate_once_from_info(
     draft_tpl: str,
     outdir: pathlib.Path,
     llm: LLMClient,
-    config: Config,
-    t0: float, t1: float, t2: float
+    config: Config
 ) -> Dict[str, Any]:
-    """1記事生成"""
+    """1記事生成（temperatureパラメータを削除）"""
     outdir.mkdir(parents=True, exist_ok=True)
     
     # ① タイトル
@@ -159,7 +158,7 @@ def generate_once_from_info(
             f"あなたはnote記事の編集者です。<<<PRIMARY_KEYWORD>>>を自然に含めた、"
             f"検索意図に合致し読みたくなるSEOタイトルを1本だけ返してください。"
         )
-        gen = llm.generate(config.model_title, system_title, user_title, temperature=t0, max_tokens=300)
+        gen = llm.generate(config.model_title, system_title, user_title, max_tokens=2000)
         first_line = (gen.splitlines()[0] if gen else "").strip().strip('\'"')
         if first_line:
             sel_title = first_line
@@ -181,8 +180,7 @@ def generate_once_from_info(
     user_outline = fill_outline_prompt(outline_tpl, info, persona_urls, sel_title)
     user_outline = preprocess_prompt(user_outline, selected_title=sel_title, primary_keyword=pk)
     
-    outline_text = llm.generate(config.model_outline, system_outline, user_outline, 
-                                temperature=t1, max_tokens=6000)
+    outline_text = llm.generate(config.model_outline, system_outline, user_outline, max_tokens=10000)
     save_text(outdir / "outline.txt", outline_text)
     print("[STEP] Outline saved")
     
@@ -194,8 +192,7 @@ def generate_once_from_info(
     user_draft = fill_draft_prompt(draft_tpl, info, persona_urls, outline_text)
     user_draft = preprocess_prompt(user_draft, selected_title=sel_title, primary_keyword=pk)
     
-    article_text = llm.generate(config.model_draft, system_draft, user_draft, 
-                                temperature=t2, max_tokens=8000)
+    article_text = llm.generate(config.model_draft, system_draft, user_draft, max_tokens=16000)
     article_text = sanitize_generated_markdown(article_text, selected_title=sel_title)
     
     save_text(outdir / "article.md", article_text)
@@ -209,7 +206,6 @@ def generate_once_from_info(
             "outline": config.model_outline,
             "draft": config.model_draft
         },
-        "temps": {"t0": t0, "t1": t1, "t2": t2},
         "persona_label": derive_persona_label(info),
         "primary_keyword": pk,
         "selected_title": sel_title,
@@ -233,10 +229,9 @@ def process_csv(
     ready_values: List[str],
     done_value: str,
     optional_cols: Dict[str, str],
-    limit: int,
-    temps: Tuple[float, float, float]
+    limit: int
 ):
-    """CSV一括処理"""
+    """CSV一括処理（temperatureパラメータを削除）"""
     outdir.mkdir(parents=True, exist_ok=True)
     
     with csv_path.open(encoding="utf-8") as f:
@@ -280,7 +275,7 @@ def process_csv(
         try:
             generate_once_from_info(
                 info, persona_urls, title_prompt_path, outline_tpl, draft_tpl,
-                article_out, llm, config, t0=temps[0], t1=temps[1], t2=temps[2]
+                article_out, llm, config
             )
             rows[idx][status_col] = done_value
             processed += 1
@@ -342,11 +337,6 @@ def main():
     ap.add_argument("--draft_prompt", default="", help="本文生成プロンプト（未指定ならConfig/.envを使用）")
     ap.add_argument("--out", default="out", help="出力ディレクトリ（既定: out）")
     
-    # Temperature設定
-    ap.add_argument("--t0", type=float, default=0.7, help="タイトル用temperature")
-    ap.add_argument("--t1", type=float, default=0.6, help="アウトライン用temperature")
-    ap.add_argument("--t2", type=float, default=0.6, help="本文用temperature")
-    
     # CSV一括モード
     ap.add_argument("--keywords_csv", default="", help="CSVファイルパス（一括処理モード）")
     ap.add_argument("--csv_keyword_col", default="keyword", help="キーワード列名")
@@ -365,7 +355,7 @@ def main():
     args = ap.parse_args()
     
     # 設定読み込み（★ Config を先に）— .env をロードして各パスを解決
-    config = Config()  # will load .env and validate provider/keys  :contentReference[oaicite:3]{index=3}
+    config = Config()  # will load .env and validate provider/keys
     
     # LLMクライアント初期化
     api_key = config.claude_api_key if config.provider == "anthropic" else config.openai_api_key
@@ -407,8 +397,7 @@ def main():
         process_csv(
             csv_path, info_path, persona_path, title_prompt, outline_prompt, draft_prompt,
             outdir, llm, config, args.csv_keyword_col, args.csv_status_col,
-            ready_values, args.csv_done_value, optional_cols, args.limit,
-            (args.t0, args.t1, args.t2)
+            ready_values, args.csv_done_value, optional_cols, args.limit
         )
         print("[OK] CSV batch completed")
         return
@@ -423,7 +412,7 @@ def main():
     
     ctx = generate_once_from_info(
         info, persona_urls, title_prompt, outline_tpl, draft_tpl,
-        outdir, llm, config, t0=args.t0, t1=args.t1, t2=args.t2
+        outdir, llm, config
     )
     
     save_json(outdir / "context_root.json", {

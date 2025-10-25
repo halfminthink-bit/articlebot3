@@ -5,7 +5,7 @@
 旧publish_gdoc_html.pyの全機能を維持
 
 使い方:
-  python document_publisher.py --md out/article.md --folder-id 1Ay4...
+  python document_publisher.py --md out_batch\20251025_154354_saito\article.md --folder-id 1WJNsfUl5Arst58E8b2LPo1h7A0inlwlI
 """
 import os
 import sys
@@ -658,9 +658,9 @@ def main():
     ap.add_argument("--col-a-width", type=int, default=520)
     ap.add_argument("--col-b-width", type=int, default=820)
     ap.add_argument("--force-login", type=int, default=0)
-    ap.add_argument("--ad-disclosure", default="本記事にはアフィリエイトリンクを含みます。")
+    ap.add_argument("--ad-disclosure", default="")
     ap.add_argument("--mid-cta-text", default="")
-    ap.add_argument("--last-cta-text", default="→公式サイトはこちらから")
+    ap.add_argument("--last-cta-text", default="")
     ap.add_argument("--reflow", type=int, default=1)
     ap.add_argument("--sentences-per-para", type=int, default=2)
     ap.add_argument("--fix-bold", type=int, default=1)

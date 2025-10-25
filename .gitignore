@@ -47,3 +47,6 @@ logs/
 
 # --- Misc caches ---
 .cache/
+
+data/
+used/

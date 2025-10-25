@@ -1,20 +1,16 @@
 # batch_orchestrator.py
 # -*- coding: utf-8 -*-
 """
-バッチ処理スクリプト（リファクタ版）
+バッチ処理スクリプト（リファクタ版・temperature削除版）
 旧 orchestrate_personas.py の全機能を維持
 
 使い方:
-  python batch_orchestrator.py \
-    --info data/info.json \
-    --persona-dir data/personas \
-    --folder-id 1Ay4ROIpd-83CYn8PR_Pbw6M4ADW5XBn7
-
-  python batch_orchestrator.py \
-    --info data/info/info_bokuno.json \
-    --persona-dir data/personas/ren.txt \
-    --folder-id 1Ay4ROIpd-83CYn8PR_Pbw6M4ADW5XBn7 \
-    --force-login
+  python batch_orchestrator.py 
+    --persona-dir data/personas/saito.txt 
+    --keywords_csv data/keywords/test.csv 
+    --folder-id 1WJNsfUl5Arst58E8b2LPo1h7A0inlwlI 
+    --sheet-id  1XEOsAIiKNBe5IwqGmvV87ui8tVrvyA6TF8wVPkW_zNA
+    --sheet-tab yabai
 """
 import os
 import re
@@ -93,9 +89,9 @@ def main():
         description="記事をバッチ生成してGoogleドキュメント化"
     )
     
-    # 必須引数
-    ap.add_argument("--info", required=True, 
-                   help="ベースとなるinfo.jsonのパス")
+    # 基本引数
+    ap.add_argument("--info", default="", 
+                   help="ベースとなるinfo.jsonのパス（CSVモード時は不要）")
     ap.add_argument("--persona-dir", required=True, 
                    help="ペルソナファイル or ペルソナディレクトリ")
     
@@ -107,13 +103,7 @@ def main():
     ap.add_argument("--out-base", default=str(DEFAULT_OUT_BASE), 
                    help=f"出力ベースディレクトリ（既定: {DEFAULT_OUT_BASE}）")
     
-    # LLM温度設定
-    ap.add_argument("--t0", type=float, default=0.7, 
-                   help="タイトル生成の温度（既定: 0.7）")
-    ap.add_argument("--t1", type=float, default=0.6, 
-                   help="アウトライン生成の温度（既定: 0.6）")
-    ap.add_argument("--t2", type=float, default=0.6, 
-                   help="本文生成の温度（既定: 0.6）")
+    # 処理制限
     ap.add_argument("--limit", type=int, default=0, 
                    help="処理キーワード上限（0=無制限）")
     
@@ -121,22 +111,21 @@ def main():
     ap.add_argument("--title-prefix", default="[記事]", 
                    help="GDocタイトルの接頭辞（既定: [記事]）")
     ap.add_argument("--folder-id", default="", 
-                   help="GDriveフォルダID（必須ではないが、指定推奨）")
+                   help="GDriveフォルダID")
     ap.add_argument("--share-anyone-writer", type=int, default=1, 
                    help="誰でも編集可能にするか（1=有効, 0=無効）")
     ap.add_argument("--force-login", action='store_true', 
                    help="強制的に再ログインする")
     
-    # CTA設定
-    ap.add_argument("--ad-disclosure", 
-                   default="本記事にはアフィリエイトリンクを含みます。", 
-                   help="記事冒頭の注意書き")
+    # CTA設定（デフォルトは全て空）
+    ap.add_argument("--ad-disclosure", default="", 
+                   help="記事冒頭の注意書き（空の場合はスキップ）")
     ap.add_argument("--mid-cta-text", default="", 
                    help="記事中盤のCTAテキスト（空の場合はスキップ）")
-    ap.add_argument("--last-cta-text", default="→無料相談会はこちらから", 
-                   help="記事末尾のCTAテキスト")
+    ap.add_argument("--last-cta-text", default="", 
+                   help="記事末尾のCTAテキスト（空の場合はスキップ）")
     
-    # スプレッドシート設定（省略時は .env から取得）
+    # スプレッドシート設定
     ap.add_argument("--sheet-id", default="", 
                    help="スプレッドシートID（省略時は .env の SHEET_ID）")
     ap.add_argument("--sheet-tab", default="", 
@@ -147,15 +136,19 @@ def main():
     # 設定読み込み
     config = Config()
     
-    # ★変更点：プロンプトパスは config から取得（CLI引数で渡さない）
-    # article_generator.py 内部で config.get_prompt_paths() が呼ばれる
-    
     # パス検証
-    info_path = normpath(args.info)
+    use_csv = bool(args.keywords_csv.strip())
+    
+    if not use_csv:
+        # 単発モード時はinfoが必須
+        if not args.info:
+            raise SystemExit("--info is required when not using CSV mode")
+        info_path = normpath(args.info)
+        if not info_path.exists():
+            raise SystemExit(f"info.json not found: {info_path}")
+    
     persona_arg = normpath(args.persona_dir)
     
-    if not info_path.exists():
-        raise SystemExit(f"info.json not found: {info_path}")
     if not persona_arg.exists():
         raise SystemExit(f"persona path not found: {persona_arg}")
     if not ENGINE_FILE.exists():
@@ -173,7 +166,6 @@ def main():
         raise SystemExit("persona files not found")
     
     # キーワード読み込み
-    use_csv = bool(args.keywords_csv.strip())
     ready_list: List[Dict[str, any]] = []
     
     if use_csv:
@@ -188,7 +180,7 @@ def main():
                 raise SystemExit("CSV requires 'keyword', 'info', and 'prompts' columns")
             
             rows_data = []
-            for idx, row in enumerate(rdr, start=2):  # 2から開始（ヘッダーが1行目）
+            for idx, row in enumerate(rdr, start=2):
                 kw = (row.get("keyword") or "").strip()
                 info_str = (row.get("info") or "").strip()
                 prompts_str = (row.get("prompts") or "").strip()
@@ -232,11 +224,10 @@ def main():
         pk = (info_dict.get("primary_keyword") or "").strip()
         if not pk:
             raise SystemExit("primary_keyword required in info.json")
-        # 非CSVモード: デフォルトのinfo_pathを使用（プロンプトはarticle_generator内でConfigから取得）
         ready_list = [{
             "keyword": pk,
             "info_path": info_path,
-            "prompts_dir": None  # Noneの場合はarticle_generator側でConfigから取得
+            "prompts_dir": None
         }]
     
     out_base = normpath(args.out_base)
@@ -264,7 +255,7 @@ def main():
             
             print(f"\n=== [{p_idx}/{len(personas)}] {persona_name} | {kw} ===")
             
-            # 一時info.json作成（CSV指定のinfoファイルを使用）
+            # 一時info.json作成
             base_info = json.loads(item_info_path.read_text(encoding="utf-8"))
             base_info["primary_keyword"] = kw
             tmp_info = out_base / f"_tmpinfo_{int(time.time())}_{persona_name}.json"
@@ -279,16 +270,13 @@ def main():
             if item_prompts_dir:
                 print(f"[info] prompts: {item_prompts_dir}")
             
-            # 記事生成コマンド（プロンプトパスを明示的に指定）
+            # 記事生成コマンド（temperature削除）
             cmd = [
                 sys.executable,
                 str(ENGINE_FILE),
                 "--info", str(tmp_info),
                 "--persona_urls", str(persona_urls),
                 "--out", str(run_dir),
-                "--t0", str(args.t0),
-                "--t1", str(args.t1),
-                "--t2", str(args.t2),
             ]
             
             # プロンプトディレクトリが指定されている場合は追加
@@ -298,7 +286,6 @@ def main():
                     "--outline_prompt", str(item_prompts_dir / "outline.txt"),
                     "--draft_prompt", str(item_prompts_dir / "draft.txt"),
                 ]
-            
             
             rc, out_text, err_text = run(cmd)
             if rc != 0:
@@ -319,12 +306,17 @@ def main():
                 "--md", str(md_path),
                 "--title-prefix", args.title_prefix,
                 "--share-anyone-writer", str(int(args.share_anyone_writer)),
-                "--ad-disclosure", args.ad_disclosure,
-                "--mid-cta-text", args.mid_cta_text,
-                "--last-cta-text", args.last_cta_text,
                 "--reflow", "1",
                 "--sentences-per-para", "3",
             ]
+            
+            # CTAは空でない場合のみ追加
+            if args.ad_disclosure:
+                publish_cmd += ["--ad-disclosure", args.ad_disclosure]
+            if args.mid_cta_text:
+                publish_cmd += ["--mid-cta-text", args.mid_cta_text]
+            if args.last_cta_text:
+                publish_cmd += ["--last-cta-text", args.last_cta_text]
             
             if args.folder_id:
                 publish_cmd += ["--folder-id", args.folder_id]
