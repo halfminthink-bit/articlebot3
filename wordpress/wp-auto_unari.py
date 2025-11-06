@@ -20,6 +20,13 @@ H WordPress記事URL（自動更新）
   credentials.json を同一ディレクトリへ配置（Sheets/Docs 読取用）
 """
 import os
+import sys
+import pathlib
+
+# プロジェクトルートをパスに追加
+project_root = pathlib.Path(__file__).parent.parent
+sys.path.insert(0, str(project_root))
+
 import re
 import base64
 import argparse
@@ -43,22 +50,8 @@ SCOPES = [
     'https://www.googleapis.com/auth/documents.readonly',
 ]
 
-
-def authenticate_google() -> Credentials:
-    """Google API の OAuth 認証（ローカル認可フロー）"""
-    creds = None
-    token_path = "token.json"
-    if os.path.exists(token_path):
-        creds = Credentials.from_authorized_user_file(token_path, SCOPES)
-    if not creds or not creds.valid:
-        if creds and creds.expired and creds.refresh_token:
-            creds.refresh(Request())
-        else:
-            flow = InstalledAppFlow.from_client_secrets_file("credentials.json", SCOPES)
-            creds = flow.run_local_server(port=0)
-        with open(token_path, "w", encoding="utf-8") as f:
-            f.write(creds.to_json())
-    return creds
+# 共通モジュール
+from lib.auth import GoogleAuth
 
 
 def apply_text_style(text: str, text_style: Dict[str, Any]) -> str:
@@ -237,9 +230,9 @@ def main():
 
     print(f"WordPress自動投稿を開始します...（{'下書き' if args.draft else '公開'}モード）")
 
-    creds = authenticate_google()
-    sheets_service = build('sheets', 'v4', credentials=creds)
-    docs_service = build('docs', 'v1', credentials=creds)
+    auth = GoogleAuth()
+    sheets_service = auth.build_service('sheets', 'v4')
+    docs_service = auth.build_service('docs', 'v1')
 
     posts = get_posts_to_publish(sheets_service)
     if not posts:

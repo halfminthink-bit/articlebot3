@@ -1,4 +1,9 @@
+# 半分
 # https://docs.google.com/spreadsheets/d/1Lh9QGPn0RWXK4ddjQ-TavKdpFITl0ml1ycKdX9bdpmM/edit?gid=0#gid=0
+# やめませんか
+# https://docs.google.com/spreadsheets/d/1XEOsAIiKNBe5IwqGmvV87ui8tVrvyA6TF8wVPkW_zNA/edit?gid=0#gid=0
+
+# python wordpress/wp-auto_half.py
 import os
 import sys
 import pathlib
@@ -18,11 +23,12 @@ from google_auth_oauthlib.flow import InstalledAppFlow
 from google.auth.transport.requests import Request
 from xmlrpc.client import ServerProxy, Fault, ProtocolError
 
+
 # ====== 設定 ======
 SHEET_TAB = 'kasegenai'  # ここにタブ名
 
 # 認証情報の設定
-SPREADSHEET_ID = '1Lh9QGPn0RWXK4ddjQ-TavKdpFITl0ml1ycKdX9bdpmM'
+SPREADSHEET_ID = '1XEOsAIiKNBe5IwqGmvV87ui8tVrvyA6TF8wVPkW_zNA'
 
 # 共通モジュール
 from lib.auth import GoogleAuth
@@ -76,42 +82,130 @@ def get_document_content(docs_service, doc_url):
         title = document.get('title', 'タイトルなし')
     return title, '\n'.join(html_body)
 
-# スプレッドシートから投稿情報を取得（列順 A:I）
+# URLを正規化（https://を追加）
+def normalize_url(url):
+    """URLにスキームが無ければhttps://を追加"""
+    if not url:
+        return ''
+    url = url.strip()
+    if not url.startswith(('http://', 'https://')):
+        url = 'https://' + url
+    return url.rstrip('/')
+
+# スプレッドシートから投稿情報を取得（列順 A:J）
+# A: サイトURL
+# B: タイトル
+# C: Google DocsのURL
+# D: WordPressユーザー名
+# E: アプリケーションパスワード
+# F: スラッグ
+# G: カテゴリ（スラッグまたは名前、カンマ区切りで複数指定可）
+# H: 投稿済み
+# I: 投稿日時
+# J: WordPress記事URL
 def get_posts_to_publish(sheets_service):
     sheet = sheets_service.spreadsheets()
     result = sheet.values().get(
         spreadsheetId=SPREADSHEET_ID,
-        range=f"{SHEET_TAB}!A2:I"  # シングルクォートを削除
+        range=f"{SHEET_TAB}!A2:J"
     ).execute()
     values = result.get('values', [])
     posts = []
     for i, row in enumerate(values, start=2):
-        while len(row) < 9:
+        while len(row) < 10:
             row.append('')
-        title, doc_url, site_url, slug, username, app_password, posted, post_date, wp_url = row
+        site_url, title, doc_url, username, app_password, slug, categories, posted, post_date, wp_url = row
         if not posted or posted.lower() != '済':
             posts.append({
                 'row_number': i,
-                'site_url': (site_url or '').strip().rstrip('/'),
+                'site_url': normalize_url(site_url),  # ★ ここで正規化
                 'title': (title or '').strip(),
                 'doc_url': (doc_url or '').strip(),
-                'slug': (slug or '').strip(),
                 'username': (username or '').strip(),
                 'app_password': (app_password or '').strip(),
+                'slug': (slug or '').strip(),
+                'categories': (categories or '').strip(),
             })
     return posts
 
-# WordPress REST API（まず試す）
-def post_to_wordpress_rest(site_url, username, app_password, title, content, slug, status='publish'):
-    if not site_url:
-        return False, "エラー: site_url が空です"
+# カテゴリIDを取得または作成（REST API用）
+def get_or_create_category_ids_rest(site_url, username, app_password, category_names):
+    """
+    カテゴリ名のリストからカテゴリIDのリストを取得
+    存在しない場合は新規作成
+    """
+    if not category_names:
+        return []
+    
     credentials = f"{username}:{app_password}"
     token = base64.b64encode(credentials.encode()).decode('utf-8')
-    api_url = f"{site_url}/wp-json/wp/v2/posts"
     headers = {'Authorization': f'Basic {token}', 'Content-Type': 'application/json'}
+    
+    category_ids = []
+    
+    for cat_name in category_names:
+        cat_name = cat_name.strip()
+        if not cat_name:
+            continue
+        
+        # 既存カテゴリを検索
+        api_url = f"{site_url}/wp-json/wp/v2/categories?search={cat_name}&per_page=100"
+        try:
+            r = requests.get(api_url, headers=headers, timeout=30)
+            if r.status_code == 200:
+                categories = r.json()
+                # 完全一致を探す
+                found = None
+                for cat in categories:
+                    if cat.get('name', '').lower() == cat_name.lower() or cat.get('slug', '').lower() == cat_name.lower():
+                        found = cat
+                        break
+                
+                if found:
+                    category_ids.append(found['id'])
+                    print(f"    カテゴリ '{cat_name}' 見つかりました (ID: {found['id']})")
+                    continue
+            
+            # 見つからなければ新規作成
+            create_url = f"{site_url}/wp-json/wp/v2/categories"
+            payload = {'name': cat_name}
+            r = requests.post(create_url, json=payload, headers=headers, timeout=30)
+            if r.status_code == 201:
+                new_cat = r.json()
+                category_ids.append(new_cat['id'])
+                print(f"    カテゴリ '{cat_name}' を作成しました (ID: {new_cat['id']})")
+            else:
+                print(f"    カテゴリ '{cat_name}' の作成に失敗: {r.status_code}")
+        
+        except Exception as e:
+            print(f"    カテゴリ '{cat_name}' の処理でエラー: {e}")
+    
+    return category_ids
+
+# WordPress REST API（まず試す）
+def post_to_wordpress_rest(site_url, username, app_password, title, content, slug, categories_str, status='publish'):
+    if not site_url:
+        return False, "エラー: site_url が空です"
+    
+    credentials = f"{username}:{app_password}"
+    token = base64.b64encode(credentials.encode()).decode('utf-8')
+    headers = {'Authorization': f'Basic {token}', 'Content-Type': 'application/json'}
+    
+    # カテゴリ処理
+    category_ids = []
+    if categories_str:
+        category_names = [c.strip() for c in categories_str.split(',') if c.strip()]
+        if category_names:
+            print(f"  カテゴリ処理中: {', '.join(category_names)}")
+            category_ids = get_or_create_category_ids_rest(site_url, username, app_password, category_names)
+    
+    api_url = f"{site_url}/wp-json/wp/v2/posts"
     payload = {'title': title, 'content': content, 'status': status}
     if slug:
         payload['slug'] = slug
+    if category_ids:
+        payload['categories'] = category_ids
+    
     try:
         r = requests.post(api_url, json=payload, headers=headers, timeout=30)
     except requests.RequestException as e:
@@ -121,13 +215,22 @@ def post_to_wordpress_rest(site_url, username, app_password, title, content, slu
     return False, f"REST失敗: {r.status_code} - {r.text[:300]}"
 
 # XML-RPC（RESTがダメな環境のフォールバック）
-def post_to_wordpress_xmlrpc(site_url, username, app_password, title, content, slug, status='publish'):
+def post_to_wordpress_xmlrpc(site_url, username, app_password, title, content, slug, categories_str, status='publish'):
     if not site_url:
         return False, "エラー: site_url が空です"
     endpoint = f"{site_url}/xmlrpc.php"
     try:
         s = ServerProxy(endpoint)
         blog_id = 0
+        
+        # カテゴリ処理（XML-RPCではカテゴリ名を直接指定可能）
+        terms_names = {}
+        if categories_str:
+            category_names = [c.strip() for c in categories_str.split(',') if c.strip()]
+            if category_names:
+                print(f"  カテゴリ設定: {', '.join(category_names)}")
+                terms_names['category'] = category_names
+        
         content_struct = {
             'post_type': 'post',
             'post_status': status,
@@ -136,6 +239,9 @@ def post_to_wordpress_xmlrpc(site_url, username, app_password, title, content, s
         }
         if slug:
             content_struct['post_name'] = slug
+        if terms_names:
+            content_struct['terms_names'] = terms_names
+        
         post_id = s.wp.newPost(blog_id, username, app_password, content_struct)
         post = s.wp.getPost(blog_id, username, app_password, post_id)
         link = post.get('link') or post.get('permalink') or ''
@@ -154,7 +260,7 @@ def update_spreadsheet(sheets_service, row_number, status, post_date, wp_url):
     body = {'values': values}
     sheet.values().update(
         spreadsheetId=SPREADSHEET_ID,
-        range=f"{SHEET_TAB}!G{row_number}:I{row_number}",  # シングルクォートを削除
+        range=f"{SHEET_TAB}!H{row_number}:J{row_number}",
         valueInputOption='RAW',
         body=body
     ).execute()
@@ -192,11 +298,14 @@ def main():
             final_title = post['title'] if post['title'] else doc_title
             print(f"  タイトル: {final_title}")
             print(f"  スラッグ: {post['slug']}")
+            if post['categories']:
+                print(f"  カテゴリ: {post['categories']}")
 
             # まず REST でトライ
             ok, result = post_to_wordpress_rest(
                 post['site_url'], post['username'], post['app_password'],
-                final_title, content, post['slug'], status=post_status
+                final_title, content, post['slug'], post['categories'], 
+                status=post_status
             )
 
             # RESTが失敗したら XML-RPC に自動フォールバック
@@ -204,7 +313,8 @@ def main():
                 print("  ↪ RESTが拒否（ヘッダ未通過の可能性）。XML-RPC で再試行します…")
                 ok, result = post_to_wordpress_xmlrpc(
                     post['site_url'], post['username'], post['app_password'],
-                    final_title, content, post['slug'], status=post_status
+                    final_title, content, post['slug'], post['categories'],
+                    status=post_status
                 )
 
             if ok:
@@ -228,6 +338,14 @@ def main():
                 )
                 failed_count += 1
 
+        except KeyboardInterrupt:
+            print("\n\n処理を中断しました。")
+            print("=" * 50)
+            print("中断時点の結果")
+            print(f"成功: {success_count}件")
+            print(f"失敗: {failed_count}件")
+            print("=" * 50)
+            sys.exit(0)
         except Exception as e:
             print(f"  ✗ エラー: {str(e)}\n")
             update_spreadsheet(

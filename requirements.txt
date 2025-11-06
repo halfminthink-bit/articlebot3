@@ -1,3 +1,4 @@
+# 既存の依存関係
 annotated-types==0.7.0
 anyio==4.10.0
 cachetools==5.5.2
@@ -49,3 +50,9 @@ tzdata==2025.2
 uritemplate==4.2.0
 urllib3==2.5.0
 beautifulsoup4>=4.12.0
+youtube-transcript-api>=0.6.0
+playwright==1.55.0
+
+# 銀行情報収集スクリプトv2用の追加パッケージ
+anthropic>=0.39.0
+lxml>=4.9.0

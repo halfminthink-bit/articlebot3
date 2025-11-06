@@ -35,6 +35,45 @@ from lib.utils import read_text, read_json, read_lines_strip, save_text, save_js
 ROOT = pathlib.Path(__file__).resolve().parent
 
 
+# ─────────────── 固定パート定義 ───────────────
+INTRO_SECTION = """## 変わりゆく銀行業界―「安定」の幻想とは
+「銀行員は安定している」そう思われていた時代は、もう過去のものかもしれません。
+
+**みずほ銀行は、今後10年間で1万9000人の削減を計画しています。**
+**三井住友銀行も、店舗統廃合を加速させています。**
+
+メガバンクでさえ、この状況です。
+
+「大きすぎて潰れない」と言われていた存在が、今、大規模なリストラと店舗削減を進めている。
+
+これが意味することは何でしょうか。
+
+地方銀行は、さらに厳しい状況に置かれているかもしれません。
+"""
+
+OUTRO_SECTION = """## では、どうすればいいのか？
+銀行一筋は大きなリスクを伴う時代です。収入源を多様化することが重要。
+
+でも、「どうやっていいのか分からない」。AI副業とか聞くけど、具体的に何をすればいいのか。
+
+その気持ち、よく分かります。
+
+実は、私はこれまで**2000人以上の方の相談に乗ってきました。**
+みなさん、同じような悩みを抱えていました。
+
+「何から始めればいいのか」
+「自分にできるのか」
+「失敗したらどうしよう」
+
+でも、一歩踏み出した人たちは、確実に変わっていきました。
+
+LINEでは、私が実際にやってきた方法を具体的にお伝えしています。
+押し売りではなく、あなたの状況に合わせた提案をしたい。
+
+**まずは話を聞いてみませんか？**
+"""
+
+
 # ─────────────── プレースホルダ処理 ───────────────
 _PLACEHOLDER_LINE_RE = re.compile(r'^\s*[#>\-\s]*<{3}[^>]+>{3}\s*$')
 
@@ -50,6 +89,11 @@ def preprocess_prompt(text: str, selected_title: str, primary_keyword: str) -> s
 def sanitize_generated_markdown(md: str, selected_title: str) -> str:
     """生成物のサニタイズ"""
     lines = [ln for ln in md.splitlines() if not _PLACEHOLDER_LINE_RE.match(ln)]
+    
+    # 指示マーカーを削除（【データ提示】【解釈】【考察＋言い切り】など）
+    instruction_marker_pattern = re.compile(r'【[^】]+】')
+    lines = [instruction_marker_pattern.sub('', ln).strip() for ln in lines]
+    # 空行になった行は削除しない（段落構造を保つため）
     
     # H1正規化
     h1_pat = re.compile(r'^\s*#\s*(.+?)\s*$')
@@ -76,6 +120,31 @@ def sanitize_generated_markdown(md: str, selected_title: str) -> str:
         deduped.append(ln)
     
     return "\n".join(deduped).strip()
+
+def insert_fixed_sections(article_text: str) -> str:
+    """記事に固定セクションを挿入する"""
+    lines = article_text.splitlines()
+    
+    # H1を探す
+    h1_index = -1
+    for i, line in enumerate(lines):
+        if line.startswith('# '):
+            h1_index = i
+            break
+    
+    if h1_index == -1:
+        # H1が見つからない場合は冒頭に追加
+        result_lines = [INTRO_SECTION, ''] + lines + ['', '', OUTRO_SECTION]
+    else:
+        # H1の直後にintro、末尾にoutroを追加
+        result_lines = (
+            lines[:h1_index+1] +  # H1まで
+            ['', INTRO_SECTION] +  # 空行 + intro
+            lines[h1_index+1:] +   # H1以降の本文
+            ['', '', OUTRO_SECTION]  # 空行2つ + outro
+        )
+    
+    return '\n'.join(result_lines)
 
 # ─────────────── info派生ヘルパ ───────────────
 def derive_persona_label(info: Dict[str, Any]) -> str:
@@ -213,6 +282,9 @@ def generate_once_from_info(
     
     article_text = llm.generate(config.model_draft, system_draft, user_draft, max_tokens=16000)
     article_text = sanitize_generated_markdown(article_text, selected_title=sel_title)
+    
+    # 固定パートを挿入
+    article_text = insert_fixed_sections(article_text)
     
     save_text(outdir / "article.md", article_text)
     print("[STEP] Article saved")

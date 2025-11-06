@@ -1,45 +1,36 @@
 keyword,info,prompts
-日本マスタートラスト信託銀行 やばい,
-みんなの銀行やばい,
-東日本銀行やばい,
-静岡銀行 やばい,
-地方銀行やばいランキング,
-愛媛銀行 やばい,
-ドイツ銀行やばい理由,
-北都銀行 やばい,
-百十四銀行 やばい,
-池田泉州銀行やばい,
-福邦銀行 やばい,
-百五銀行 やばい,
-大光銀行やばい,
-八十二銀行 やばい,
-あおぞら銀行 やばい 知恵袋,
-清水銀行やばい,
-山口銀行やばい,
-関西みらい銀行 やばい,
-島根銀行 やばい,
-りそな銀行 やばい,
-東北銀行 やばい,
-大垣共立銀行 やばい,
-楽天銀行 不動産投資 やばい,
-三菱ufj信託銀行 やばい,
-sbi新生銀行やばい,
-銀行 やばい,
-武蔵野銀行 やばい,
-みちのく銀行やばい,
-筑邦銀行 やばい,
-西京銀行やばい,
-トマト銀行 やばい,
-きらやか銀行やばい,
-きらぼし銀行やばい,
-日本カストディ銀行 やばい,
-北國銀行やばい,
-スルガ銀行やばい,
-ドイツ銀行 やばい,
-スルガ銀行 ローン やばい,
-大東銀行 やばい,
-あおぞら銀行bank支店 やばい,
-地方銀行やばい,
-鳥取銀行やばい,
-
-
+静岡銀行 稼げない,data\info\bank\静岡銀行.json,data\prompts\ginkou_02
+愛媛銀行 稼げない,data\info\bank\愛媛銀行.json,data\prompts\ginkou_02
+ドイツ銀行 稼げない,data\info\bank\ドイツ銀行.json,data\prompts\ginkou_02
+北都銀行 稼げない,data\info\bank\北都銀行.json,data\prompts\ginkou_02
+百十四銀行 稼げない,data\info\bank\百十四銀行.json,data\prompts\ginkou_02
+池田泉州銀行 稼げない,data\info\bank\池田泉州銀行.json,data\prompts\ginkou_02
+福邦銀行 稼げない,data\info\bank\福邦銀行.json,data\prompts\ginkou_02
+百五銀行 稼げない,data\info\bank\百五銀行.json,data\prompts\ginkou_02
+大光銀行 稼げない,data\info\bank\大光銀行.json,data\prompts\ginkou_02
+八十二銀行 稼げない,data\info\bank\八十二銀行.json,data\prompts\ginkou_02
+あおぞら銀行 稼げない 知恵袋,data\info\bank\あおぞら銀行.json,data\prompts\ginkou_02
+清水銀行 稼げない,data\info\bank\清水銀行.json,data\prompts\ginkou_02
+山口銀行 稼げない,data\info\bank\山口銀行.json,data\prompts\ginkou_02
+関西みらい銀行 稼げない,data\info\bank\関西みらい銀行.json,data\prompts\ginkou_02
+島根銀行 稼げない,data\info\bank\島根銀行.json,data\prompts\ginkou_02
+りそな銀行 稼げない,data\info\bank\りそな銀行.json,data\prompts\ginkou_02
+東北銀行 稼げない,data\info\bank\東北銀行.json,data\prompts\ginkou_02
+大垣共立銀行 稼げない,data\info\bank\大垣共立銀行.json,data\prompts\ginkou_02
+楽天銀行 不動産投資 稼げない,data\info\bank\楽天銀行 不動産投資.json,data\prompts\ginkou_02
+三菱ufj信託銀行 稼げない,data\info\bank\三菱UFJ信託銀行.json,data\prompts\ginkou_02
+sbi新生銀行やばい,data\info\bank\SBI新生銀行.json,data\prompts\ginkou_02
+武蔵野銀行 稼げない,data\info\bank\武蔵野銀行.json,data\prompts\ginkou_02
+みちのく銀行やばい,data\info\bank\みちのく銀行.json,data\prompts\ginkou_02
+筑邦銀行 稼げない,data\info\bank\筑邦銀行.json,data\prompts\ginkou_02
+西京銀行やばい,data\info\bank\西京銀行.json,data\prompts\ginkou_02
+トマト銀行 稼げない,data\info\bank\トマト銀行.json,data\prompts\ginkou_02
+きらやか銀行やばい,data\info\bank\きらやか銀行.json,data\prompts\ginkou_02
+きらぼし銀行やばい,data\info\bank\きらぼし銀行.json,data\prompts\ginkou_02
+日本カストディ銀行 稼げない,data\info\bank\日本カストディ銀行.json,data\prompts\ginkou_02
+北國銀行やばい,data\info\bank\北國銀行.json,data\prompts\ginkou_02
+スルガ銀行やばい,data\info\bank\スルガ銀行.json,data\prompts\ginkou_02
+ドイツ銀行 稼げない,data\info\bank\ドイツ銀行.json,data\prompts\ginkou_02
+スルガ銀行 ローン 稼げない,data\info\bank\スルガ銀行 ローン.json,data\prompts\ginkou_02
+大東銀行 稼げない,data\info\bank\大東銀行.json,data\prompts\ginkou_02
+鳥取銀行やばい,data\info\bank\鳥取銀行.json,data\prompts\ginkou_02

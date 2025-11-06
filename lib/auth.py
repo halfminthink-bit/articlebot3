@@ -11,7 +11,7 @@ from google.auth.exceptions import RefreshError
 from googleapiclient.discovery import build
 
 SCOPES = [
-    "https://www.googleapis.com/auth/drive.file",
+    "https://www.googleapis.com/auth/drive",
     "https://www.googleapis.com/auth/spreadsheets",
     "https://www.googleapis.com/auth/documents",
 ]

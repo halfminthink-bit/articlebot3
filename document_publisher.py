@@ -5,7 +5,7 @@
 旧publish_gdoc_html.pyの全機能を維持
 
 使い方:
-  python document_publisher.py --md out_batch\20251025_154354_saito\article.md --folder-id 1WJNsfUl5Arst58E8b2LPo1h7A0inlwlI
+  python document_publisher.py --md out_persona_sweep\20251027_201311_01_5g-kanazawa.com\article.md --folder-id 11aS5WCwVWOk8F5g_PIJF5rmK7GA8Uru5
 """
 import os
 import sys

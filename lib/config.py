@@ -25,10 +25,13 @@ class Config:
         self.claude_api_key = os.getenv("CLAUDE_API_KEY", "").strip()
         
         # モデル設定（省略時はプロバイダーに応じた既定値）
-        default_model = "claude-3-5-sonnet-latest" if self.provider == "anthropic" else "gpt-4o"
+        default_model = "claude-sonnet-4-5" if self.provider == "anthropic" else "gpt-4o"
         self.model_title = os.getenv("MODEL_TITLE", default_model).strip()
         self.model_outline = os.getenv("MODEL_OUTLINE", default_model).strip()
         self.model_draft = os.getenv("MODEL_DRAFT", default_model).strip()
+        
+        # ===== 検索API設定 =====
+        self.brave_api_key = os.getenv("BRAVE_API_KEY", "").strip()  # ← 追加
         
         # ===== Google設定 =====
         self.sheet_id = os.getenv("SHEET_ID", "").strip()

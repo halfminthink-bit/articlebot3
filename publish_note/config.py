@@ -10,7 +10,7 @@ class Config:
     
     # Google Sheets
     SHEET_ID = os.getenv("SHEET_ID")
-    SHEET_NAME = os.getenv("SHEET_NAME", "Articles")
+    SHEET_NAME = os.getenv("SHEET_NAME", "mama")
     SCOPES = ["https://www.googleapis.com/auth/spreadsheets"]
     
     # note認証

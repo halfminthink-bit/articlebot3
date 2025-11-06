@@ -13,14 +13,12 @@ https://docs.google.com/spreadsheets/d/1XEOsAIiKNBe5IwqGmvV87ui8tVrvyA6TF8wVPkW_
 https://docs.google.com/spreadsheets/d/1DodLnBNvxlmgK5kKE5niRO7YbMNYOWbS3gnB_umg26g/edit?gid=0#gid=0
 
 使い方:
-  python batch_orchestrator.py 
-    --persona-dir data\personas\note\mama.txt
-    --keywords_csv data\keywords\todai_keywords.csv
+  python batch_orchestrator_bank.py 
+    --persona-dir data\personas\note\saito.txt
+    --keywords_csv data\keywords\ginkou_yabai.csv
     --folder-id 1WJNsfUl5Arst58E8b2LPo1h7A0inlwlI 
-    --sheet-id  1izdh3e2GJP1VbNM4eoUHX0-1RQ1x7NvceKBC2Ju4Krc
-    --sheet-tab mama
-    --last-cta-text "まずは相談をしてみる！"
-    
+    --sheet-id  1XEOsAIiKNBe5IwqGmvV87ui8tVrvyA6TF8wVPkW_zNA
+    --sheet-tab kasegenai
 """
 import os
 import re
@@ -39,7 +37,7 @@ from lib.auth import GoogleAuth
 
 ROOT = pathlib.Path(__file__).resolve().parent
 CWD = pathlib.Path.cwd()
-ENGINE_FILE = ROOT / "article_generator.py"
+ENGINE_FILE = ROOT / "article_generator_bank.py"
 PUBLISH_FILE = ROOT / "document_publisher.py"
 DEFAULT_OUT_BASE = ROOT / "out_batch"
 
@@ -172,7 +170,7 @@ def main():
     if not persona_arg.exists():
         raise SystemExit(f"persona path not found: {persona_arg}")
     if not ENGINE_FILE.exists():
-        raise SystemExit(f"article_generator.py not found: {ENGINE_FILE}")
+        raise SystemExit(f"article_generator_bank.py not found: {ENGINE_FILE}")
     if not PUBLISH_FILE.exists():
         raise SystemExit(f"document_publisher.py not found: {PUBLISH_FILE}")
     

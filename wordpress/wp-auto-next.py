@@ -1,4 +1,5 @@
 # https://docs.google.com/spreadsheets/d/1Lh9QGPn0RWXK4ddjQ-TavKdpFITl0ml1ycKdX9bdpmM/edit?gid=0#gid=0
+# python wordpress/wp-auto-next.py
 import os
 import sys
 import pathlib
@@ -10,7 +11,8 @@ sys.path.insert(0, str(project_root))
 import re
 import base64
 import argparse
-from datetime import datetime
+import random
+from datetime import datetime, timedelta
 from googleapiclient.discovery import build
 import requests
 from google.oauth2.credentials import Credentials
@@ -19,10 +21,10 @@ from google.auth.transport.requests import Request
 from xmlrpc.client import ServerProxy, Fault, ProtocolError
 
 # ====== 設定 ======
-SHEET_TAB = 'kasegenai'  # ここにタブ名
+SHEET_TAB = 'fra'  # ここにタブ名
 
 # 認証情報の設定
-SPREADSHEET_ID = '1Lh9QGPn0RWXK4ddjQ-TavKdpFITl0ml1ycKdX9bdpmM'
+SPREADSHEET_ID = '1RaysuPyx13mGygHjr2hpVhQCJw2cD6xvadvV9ALxxEU'
 
 # 共通モジュール
 from lib.auth import GoogleAuth
@@ -77,27 +79,36 @@ def get_document_content(docs_service, doc_url):
     return title, '\n'.join(html_body)
 
 # スプレッドシートから投稿情報を取得（列順 A:I）
+# A: サイトURL
+# B: タイトル
+# C: Google DocsのURL
+# D: WordPressユーザー名
+# E: アプリケーションパスワード
+# F: スラッグ
+# G: 投稿済み
+# H: 投稿日時
+# I: WordPress記事URL
 def get_posts_to_publish(sheets_service):
     sheet = sheets_service.spreadsheets()
     result = sheet.values().get(
         spreadsheetId=SPREADSHEET_ID,
-        range=f"{SHEET_TAB}!A2:I"  # シングルクォートを削除
+        range=f"{SHEET_TAB}!A2:I"
     ).execute()
     values = result.get('values', [])
     posts = []
     for i, row in enumerate(values, start=2):
         while len(row) < 9:
             row.append('')
-        title, doc_url, site_url, slug, username, app_password, posted, post_date, wp_url = row
+        site_url, title, doc_url, username, app_password, slug, posted, post_date, wp_url = row
         if not posted or posted.lower() != '済':
             posts.append({
                 'row_number': i,
                 'site_url': (site_url or '').strip().rstrip('/'),
                 'title': (title or '').strip(),
                 'doc_url': (doc_url or '').strip(),
-                'slug': (slug or '').strip(),
                 'username': (username or '').strip(),
                 'app_password': (app_password or '').strip(),
+                'slug': (slug or '').strip(),
             })
     return posts
 
@@ -136,12 +147,13 @@ def post_to_wordpress_xmlrpc(site_url, username, app_password, title, content, s
         }
         if slug:
             content_struct['post_name'] = slug
+        
         post_id = s.wp.newPost(blog_id, username, app_password, content_struct)
         post = s.wp.getPost(blog_id, username, app_password, post_id)
         link = post.get('link') or post.get('permalink') or ''
         return True, link or f"(ID:{post_id})"
     except ProtocolError as e:
-        return False, f"XML-RPC ProtocolError: {e}"
+        return False, f"XML-RPC ProtocolError: {e.errmsg}"
     except Fault as e:
         return False, f"XML-RPC Fault: {e.faultString}"
     except Exception as e:
@@ -154,7 +166,7 @@ def update_spreadsheet(sheets_service, row_number, status, post_date, wp_url):
     body = {'values': values}
     sheet.values().update(
         spreadsheetId=SPREADSHEET_ID,
-        range=f"{SHEET_TAB}!G{row_number}:I{row_number}",  # シングルクォートを削除
+        range=f"{SHEET_TAB}!G{row_number}:I{row_number}",
         valueInputOption='RAW',
         body=body
     ).execute()
@@ -200,8 +212,9 @@ def main():
             )
 
             # RESTが失敗したら XML-RPC に自動フォールバック
-            if not ok and ('rest_not_logged_in' in result or '401' in result or 'Authorization' in result):
-                print("  ↪ RESTが拒否（ヘッダ未通過の可能性）。XML-RPC で再試行します…")
+            # 404, 401, 認証エラーなど、REST APIが使えない場合
+            if not ok and ('404' in result or 'rest_not_logged_in' in result or '401' in result or 'Authorization' in result):
+                print(f"  ↪ REST失敗（{result[:100]}）。XML-RPC で再試行します…")
                 ok, result = post_to_wordpress_xmlrpc(
                     post['site_url'], post['username'], post['app_password'],
                     final_title, content, post['slug'], status=post_status

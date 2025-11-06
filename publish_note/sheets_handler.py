@@ -3,10 +3,7 @@
 import os
 from typing import List
 from dataclasses import dataclass
-from google.oauth2.credentials import Credentials
-from google_auth_oauthlib.flow import InstalledAppFlow
-from google.auth.transport.requests import Request as GRequest
-from googleapiclient.discovery import build
+from lib.auth import GoogleAuth
 
 
 @dataclass
@@ -35,25 +32,8 @@ class SheetsHandler:
         if not self.sheet_id:
             raise ValueError("SHEET_ID が .env に未設定です")
         
-        creds = None
-        if os.path.exists("token.json"):
-            creds = Credentials.from_authorized_user_file("token.json", self.scopes)
-        
-        if not creds or not creds.valid:
-            if creds and creds.expired and creds.refresh_token:
-                creds.refresh(GRequest())
-            else:
-                if not os.path.exists("credentials.json"):
-                    raise FileNotFoundError("credentials.json がありません")
-                flow = InstalledAppFlow.from_client_secrets_file(
-                    "credentials.json", self.scopes
-                )
-                creds = flow.run_local_server(port=0)
-            
-            with open("token.json", "w", encoding="utf-8") as f:
-                f.write(creds.to_json())
-        
-        self.service = build("sheets", "v4", credentials=creds)
+        auth = GoogleAuth()
+        self.service = auth.build_service("sheets", "v4")
         return self.service
     
     def read_rows(self) -> List[RowItem]:
