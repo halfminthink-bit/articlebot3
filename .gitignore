@@ -55,3 +55,10 @@ used/
 # 出力
 out_persona_sweep/
 out_batch
+
+# Projects - 実データは除外（テンプレートは保持）
+projects/*/info.json
+projects/*/keywords/*.csv
+projects/*/personas/*.txt
+projects/*/prompts/*.txt
+!projects/_template/
