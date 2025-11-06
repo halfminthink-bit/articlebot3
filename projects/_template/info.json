@@ -1,0 +1,9 @@
+{
+  "primary_keyword": "あなたのキーワード",
+  "persona_label": "ペルソナ名",
+  "target_name": "ターゲット名",
+  "target_length_chars": 3000,
+  "affiliate_url": "https://example.com/affiliate",
+  "search_intent": "情報収集",
+  "content_type": "解説記事"
+}

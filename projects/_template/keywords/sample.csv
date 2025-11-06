@@ -1,0 +1,3 @@
+keyword,status,info,prompts
+サンプルキーワード1,READY,projects/_template/info.json,projects/_template/prompts
+サンプルキーワード2,,projects/_template/info.json,projects/_template/prompts
