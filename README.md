@@ -1,132 +1,177 @@
-# ArticleBot3
+# 哲学記事自動生成・投稿システム
 
-記事生成・公開の自動化ツール
+「半分思考」サイト向けの哲学記事を自動生成し、WordPressに投稿するシステムです。
 
-## 🚀 クイックスタート
+## 機能
 
-### 新規案件の作成
+- ✅ Gemini APIを使った高品質な記事生成
+- ✅ サイトのHTMLスタイルに完全対応
+- ✅ PPTXテンプレートから自動でアイキャッチ画像を生成
+- ✅ WordPress REST APIで自動投稿
+- ✅ 複数記事の一括生成・投稿
+
+## システム構成
+
+```
+philosophy_bot/
+├── wordpress_api.py          # WordPress API連携
+├── thumbnail_generator.py    # アイキャッチ画像生成
+├── article_generator_v2.py   # 記事生成（Gemini API）
+├── auto_post_v2.py           # 単一記事投稿スクリプト
+├── batch_post.py             # 一括投稿スクリプト
+├── output/                   # 生成ファイルの出力先
+└── README.md                 # このファイル
+```
+
+## 使い方
+
+### 1. 環境のアクティベート
 
 ```bash
-# 1. テンプレートをコピー
-cp -r projects/_template projects/my_project
-
-# 2. 設定を編集
-vi projects/my_project/info.json
-vi projects/my_project/prompts/title.txt
-vi projects/my_project/prompts/outline.txt
-vi projects/my_project/prompts/draft.txt
-
-# 3. ペルソナとキーワードを配置
-# projects/my_project/personas/ にペルソナファイルを配置
-# projects/my_project/keywords/ にキーワードCSVを配置
+cd /home/ubuntu/philosophy_bot
+source bin/activate
 ```
 
-詳細は `projects/_template/README.md` を参照してください。
+### 2. 単一記事の投稿
 
-### よく使うコマンド
+`auto_post_v2.py`を編集して、哲学者の情報を設定してから実行：
 
 ```bash
-# 記事一括生成（汎用版）
-./recipes/batch_generate.sh my_project
-
-# 記事一括生成（bank版：固定セクション付き）
-./recipes/batch_generate_bank.sh
-
-# Note公開
-./recipes/note_publish.sh
-
-# WordPress公開（half用）
-./recipes/wp_publish_half.sh
-
-# WordPress記事削除
-./recipes/wp_delete.sh
+python auto_post_v2.py
 ```
 
-詳細は `recipes/` ディレクトリのスクリプトを参照してください。
+### 3. 複数記事の一括投稿
 
-## 📁 プロジェクト構造
-
-```
-articlebot3/
-├── recipes/              # よく使うコマンド集
-├── projects/             # 案件ごとのデータ
-│   ├── _template/       # 新規案件用テンプレート
-│   └── bank/            # bank案件の例
-├── lib/                 # 共通ライブラリ
-├── data/                # データファイル（既存）
-├── half_data/           # データファイル（half用）
-└── schemas/             # JSONスキーマ
-```
-
-## 🔧 環境設定
-
-### .env ファイルの設定
+#### 下書きとして投稿（デフォルト）
 
 ```bash
-# LLM設定
-PROVIDER=openai  # または anthropic
-OPENAI_API_KEY=sk-...
-CLAUDE_API_KEY=sk-ant-...
-
-# モデル設定
-MODEL_TITLE=gpt-4o
-MODEL_OUTLINE=gpt-4o
-MODEL_DRAFT=gpt-4o
-
-# プロンプト設定（デフォルト）
-PROMPT_DIR=projects/your_project/prompts
-
-# スプレッドシート設定
-SHEET_ID=your_sheet_id
-SHEET_NAME=Articles
-
-# Google Drive設定
-GDRIVE_FOLDER_ID=your_folder_id
-
-# 検索API
-BRAVE_API_KEY=your_brave_api_key
+python batch_post.py
 ```
 
-## 📝 スクリプト一覧
-
-### 記事生成
-
-- `article_generator.py`: 汎用記事生成（単発/CSV一括）
-- `article_generator_bank.py`: bank版（固定セクション挿入）
-
-### バッチ処理
-
-- `batch_orchestrator.py`: ペルソナ×キーワード大量生成
-- `batch_orchestrator_bank.py`: bank版
-- `batch_persona_sweep.py`: 固定キーワード×全ペルソナ
-
-### 情報収集
-
-- `bank_info_collector.py`: 銀行情報収集
-- `video_info_collector.py`: YouTube動画情報抽出
-- `serp_collect.py`: SERP収集
-
-### 公開
-
-- `document_publisher.py`: Markdown→GDoc公開
-- `publish_note/`: Note公開（Selenium版）
-- `publish_note_play/`: Note公開（Playwright版）
-- `wordpress/`: WordPress公開
-
-## 📦 インストール
+#### 公開状態で投稿
 
 ```bash
-# 依存パッケージのインストール
-pip install -r requirements.txt
-
-# Playwright（Note公開用）
-playwright install
+python batch_post.py --publish
 ```
 
-## 🤝 コントリビューション
+### 4. 新しい哲学者を追加
 
-プルリクエストを歓迎します。大きな変更の場合は、まずissueで議論してください。
+`batch_post.py`の`PHILOSOPHERS`リストに追加：
 
-## 📄 ライセンス
+```python
+{
+    "philosopher": "哲学者名",
+    "famous_quote": "有名な言葉",
+    "theme": "記事のテーマ",
+    "overview_items": [
+        "この記事で分かること1",
+        "この記事で分かること2",
+        "この記事で分かること3"
+    ]
+}
+```
 
-[MIT](LICENSE)
+## 記事の構造
+
+生成される記事は以下の構造になります：
+
+1. **導入部**
+   - main-quote（大きな引用）
+   - 共感を呼ぶ問いかけ
+   - 日常的なシーン描写
+
+2. **哲学者プロフィールカード**
+   - 画像（オプション）
+   - フルネーム
+   - 国籍・時代
+   - 3つの特徴
+
+3. **「この記事で分かること」ボックス**
+
+4. **目次**
+
+5. **本文（3-4セクション）**
+   - 各セクションに画像
+   - 具体例と心理学的知見
+   - 引用ボックス
+
+6. **Coffee Break**（1箇所）
+
+7. **終章**
+
+## HTMLタグの使用
+
+- `<div class="main-quote">`: 大きな引用
+- `<div class="quote-box">`: 通常の引用
+- `<span class="emphasis">`: 強調（青色）
+- `<span class="positive">`: ポジティブ（緑色）
+- `<span class="negative">`: ネガティブ（赤色）
+- `<div class="wp-block-spacer" style="height: 21px;">`: 区切り
+
+## アイキャッチ画像
+
+PPTXテンプレート（`ブルーシンプル資料noteアイキャッチ.pptx`）から自動生成されます。
+記事タイトルが自動的に挿入されます。
+
+## 設定変更
+
+### WordPress接続情報
+
+`auto_post_v2.py`と`batch_post.py`の以下の部分を編集：
+
+```python
+WP_SITE_URL = 'https://halfminthinking.com'
+WP_USERNAME = 'halfminthinking'
+WP_APP_PASSWORD = 'iN4H IfZf gt0l Yl2M ZCrO QWyO'
+```
+
+### PPTXテンプレート
+
+```python
+PPTX_TEMPLATE = '/home/ubuntu/upload/ブルーシンプル資料noteアイキャッチ.pptx'
+```
+
+## トラブルシューティング
+
+### 記事生成に失敗する
+
+- Gemini APIの制限を確認
+- プロンプトが長すぎないか確認
+
+### アイキャッチ画像が生成されない
+
+- LibreOfficeがインストールされているか確認
+- PPTXテンプレートのパスが正しいか確認
+
+### 投稿に失敗する
+
+- WordPress接続情報が正しいか確認
+- アプリケーションパスワードが有効か確認
+- カテゴリー「philosophy」が存在するか確認
+
+## 出力ファイル
+
+`output/`ディレクトリに以下のファイルが生成されます：
+
+- `{哲学者名}_article.html`: 生成されたHTML（デバッグ用）
+- `{哲学者名}_thumbnail.png`: アイキャッチ画像
+
+## 注意事項
+
+- 記事は下書きとして投稿されます（`--publish`オプションで公開可能）
+- 生成された記事は必ず内容を確認してから公開してください
+- APIの利用制限に注意してください
+- セクション画像はプレースホルダーです（実際の画像に置き換えてください）
+
+## 今後の改善案
+
+- [ ] セクション画像の自動生成
+- [ ] 関連記事カードの自動挿入
+- [ ] Coffee Breakの内容をより充実させる
+- [ ] 哲学者の画像を自動取得
+- [ ] 投稿スケジューリング機能
+- [ ] 記事の品質チェック機能
+
+## ライセンス
+
+このシステムは「半分思考」サイト専用です。
