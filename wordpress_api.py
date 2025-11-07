@@ -200,14 +200,86 @@ class WordPressAPI:
             return None
 
 
-if __name__ == '__main__':
-    # テスト用コード
-    wp = WordPressAPI(
-        site_url='https://halfminthinking.com',
-        username='halfminthinking',
-        app_password='iN4H IfZf gt0l Yl2M ZCrO QWyO'
-    )
-    
-    # カテゴリーIDを取得
-    category_id = wp.get_category_id('philosophy')
-    print(f"Philosophy category ID: {category_id}")
+    def delete_post(self, post_id: int) -> bool:
+        """
+        投稿を削除
+        
+        Args:
+            post_id: 投稿ID
+            
+        Returns:
+            削除成功の場合True、失敗の場合False
+        """
+        url = f"{self.api_base}/posts/{post_id}"
+        params = {'force': True}  # 完全に削除（ゴミ箱に入れない）
+        
+        try:
+            response = requests.delete(url, headers=self.headers, params=params)
+            if response.status_code == 200:
+                return True
+            else:
+                print(f"削除エラー: {response.status_code} - {response.text}")
+                return False
+        except Exception as e:
+            print(f"削除中に例外が発生: {e}")
+            return False
+
+
+    def create_post_with_slug_and_date(
+        self,
+        title: str,
+        content: str,
+        slug: str,
+        category_ids: list = None,
+        tags: list = None,
+        featured_media_id: int = None,
+        post_date: str = None,
+        status: str = 'draft'
+    ) -> Optional[Dict[str, Any]]:
+        """
+        スラッグと投稿日時を指定して記事を投稿
+        
+        Args:
+            title: 記事タイトル
+            content: 記事本文（HTML）
+            slug: URLスラッグ（英語）
+            category_ids: カテゴリーIDのリスト
+            tags: タグIDまたはタグ名のリスト
+            featured_media_id: アイキャッチ画像のメディアID
+            post_date: 投稿日時（ISO 8601形式、例: "2025-05-15T10:30:00"）
+            status: 投稿ステータス（'draft' or 'publish'）
+            
+        Returns:
+            作成された投稿の情報、失敗時はNone
+        """
+        url = f"{self.api_base}/posts"
+        
+        data = {
+            'title': title,
+            'content': content,
+            'slug': slug,
+            'status': status
+        }
+        
+        if category_ids:
+            data['categories'] = category_ids
+        
+        if tags:
+            data['tags'] = tags
+        
+        if featured_media_id:
+            data['featured_media'] = featured_media_id
+        
+        if post_date:
+            data['date'] = post_date
+        
+        try:
+            response = requests.post(url, headers=self.headers, json=data)
+            response.raise_for_status()
+            post = response.json()
+            return post
+        except Exception as e:
+            print(f"投稿作成エラー: {e}")
+            if hasattr(e, 'response'):
+                print(f"レスポンス: {e.response.text}")
+            return None
