@@ -1,0 +1,196 @@
+/* ========================================
+   半分思考 - 哲学記事用カスタムCSS
+   ========================================
+   
+   使い方：
+   WordPressの「外観」→「カスタマイズ」→「追加CSS」
+   にこのCSSをコピー&ペーストしてください
+   ======================================== */
+
+/* ========================================
+   基本スタイル
+   ======================================== */
+
+.philosophy-article {
+    font-family: -apple-system, BlinkMacSystemFont, "Segoe UI", "Noto Sans JP", "Hiragino Kaku Gothic ProN", "Hiragino Sans", Meiryo, sans-serif;
+    line-height: 2;
+    color: #2c3e50;
+    font-size: 16px;
+}
+
+.philosophy-article p {
+    margin: 1.5em 0;
+    font-size: 1.05em;
+    line-height: 2;
+}
+
+/* ========================================
+   見出しスタイル
+   ======================================== */
+
+.philosophy-article .hero-quote {
+    font-size: 1.8em;
+    font-weight: 300;
+    line-height: 1.6;
+    color: #1a1a1a;
+    margin: 2em 0;
+    padding: 0;
+    text-align: center;
+    font-style: italic;
+}
+
+.philosophy-article .section-title {
+    font-size: 1.6em;
+    font-weight: 600;
+    color: #2c3e50;
+    margin: 2.5em 0 1em 0;
+    padding-bottom: 0.5em;
+    border-bottom: 3px solid #f39c12;
+}
+
+.philosophy-article .subsection-title {
+    font-size: 1.3em;
+    font-weight: 600;
+    color: #34495e;
+    margin: 2em 0 1em 0;
+}
+
+.philosophy-article .philosopher-name {
+    font-size: 1.4em;
+    font-weight: 600;
+    color: #e67e22;
+    text-align: center;
+    margin: 1em 0;
+}
+
+/* ========================================
+   強調・ハイライト
+   ======================================== */
+
+.philosophy-article .highlight-text {
+    background: linear-gradient(transparent 60%, #fff3cd 60%);
+    font-weight: 500;
+    padding: 0 0.2em;
+}
+
+/* ========================================
+   引用ボックス
+   ======================================== */
+
+.philosophy-article .quote-block {
+    background: #f8f9fa;
+    border-left: 4px solid #f39c12;
+    padding: 1.5em 2em;
+    margin: 2em 0;
+    font-style: italic;
+    font-size: 1.1em;
+    color: #495057;
+    line-height: 1.8;
+}
+
+/* ========================================
+   強調ボックス
+   ======================================== */
+
+.philosophy-article .emphasis-box {
+    background: #fff9e6;
+    border: 2px solid #f39c12;
+    border-radius: 8px;
+    padding: 1.5em;
+    margin: 2em 0;
+    line-height: 1.8;
+}
+
+.philosophy-article .emphasis-box strong {
+    color: #e67e22;
+    font-size: 1.1em;
+}
+
+/* ========================================
+   スペーサー
+   ======================================== */
+
+.philosophy-article .spacer {
+    height: 2em;
+}
+
+.philosophy-article .small-spacer {
+    height: 1em;
+}
+
+/* ========================================
+   終わりのメッセージボックス
+   ======================================== */
+
+.philosophy-article .closing-message {
+    background: linear-gradient(135deg, #667eea 0%, #764ba2 100%);
+    color: white;
+    padding: 2em;
+    border-radius: 12px;
+    margin: 3em 0;
+    text-align: center;
+    font-size: 1.1em;
+    line-height: 1.8;
+}
+
+.philosophy-article .closing-message p {
+    color: white;
+    margin: 1em 0;
+}
+
+/* ========================================
+   レスポンシブ対応
+   ======================================== */
+
+@media (max-width: 768px) {
+    .philosophy-article {
+        font-size: 15px;
+    }
+    
+    .philosophy-article .hero-quote {
+        font-size: 1.5em;
+    }
+    
+    .philosophy-article .section-title {
+        font-size: 1.4em;
+    }
+    
+    .philosophy-article .quote-block {
+        padding: 1em 1.5em;
+        font-size: 1em;
+    }
+    
+    .philosophy-article .emphasis-box {
+        padding: 1em;
+    }
+    
+    .philosophy-article .closing-message {
+        padding: 1.5em;
+        font-size: 1em;
+    }
+}
+
+/* ========================================
+   追加の汎用クラス
+   ======================================== */
+
+/* テキストセンター */
+.philosophy-article .text-center {
+    text-align: center;
+}
+
+/* 小さいテキスト */
+.philosophy-article .small-text {
+    font-size: 0.9em;
+    color: #6c757d;
+}
+
+/* 太字 */
+.philosophy-article .bold {
+    font-weight: 600;
+}
+
+/* イタリック */
+.philosophy-article .italic {
+    font-style: italic;
+}

@@ -1,0 +1,658 @@
+/* ========================================
+   半分思考 - カスタムCSS（最適化版）
+   ========================================
+   
+   使い方：
+   WordPressの「外観」→「カスタマイズ」→「追加CSS」
+   にこのCSSをコピー&ペーストしてください
+   
+   最終更新: 2025年
+   ======================================== */
+
+/* ==========================================================================
+   1. 哲学記事専用スタイル
+   ========================================================================== */
+
+.philosophy-article {
+    font-family: -apple-system, BlinkMacSystemFont, "Segoe UI", "Noto Sans JP", "Hiragino Kaku Gothic ProN", "Hiragino Sans", Meiryo, sans-serif;
+    line-height: 2;
+    color: #2c3e50;
+    font-size: 16px;
+}
+
+.philosophy-article p {
+    margin: 1.5em 0;
+    font-size: 1.05em;
+    line-height: 2;
+}
+
+/* ヒーロー引用 */
+.philosophy-article .hero-quote {
+    font-size: 1.8em;
+    font-weight: 300;
+    line-height: 1.6;
+    color: #1a1a1a;
+    margin: 2em 0;
+    text-align: center;
+    font-style: italic;
+}
+
+/* セクションタイトル */
+.philosophy-article .section-title {
+    font-size: 1.6em;
+    font-weight: 600;
+    color: #2c3e50;
+    margin: 2.5em 0 1em 0;
+    padding-bottom: 0.5em;
+    border-bottom: 3px solid #f39c12;
+}
+
+/* サブセクションタイトル */
+.philosophy-article .subsection-title {
+    font-size: 1.3em;
+    font-weight: 600;
+    color: #34495e;
+    margin: 2em 0 1em 0;
+}
+
+/* 哲学者名 */
+.philosophy-article .philosopher-name {
+    font-size: 1.4em;
+    font-weight: 600;
+    color: #e67e22;
+    text-align: center;
+    margin: 1em 0;
+}
+
+/* ハイライトテキスト */
+.philosophy-article .highlight-text {
+    background: linear-gradient(transparent 60%, #fff3cd 60%);
+    font-weight: 500;
+    padding: 0 0.2em;
+}
+
+/* 引用ボックス */
+.philosophy-article .quote-block {
+    background: #f8f9fa;
+    border-left: 4px solid #f39c12;
+    padding: 1.5em 2em;
+    margin: 2em 0;
+    font-style: italic;
+    font-size: 1.1em;
+    color: #495057;
+    line-height: 1.8;
+}
+
+/* 強調ボックス */
+.philosophy-article .emphasis-box {
+    background: #fff9e6;
+    border: 2px solid #f39c12;
+    border-radius: 8px;
+    padding: 1.5em;
+    margin: 2em 0;
+    line-height: 1.8;
+}
+
+.philosophy-article .emphasis-box strong {
+    color: #e67e22;
+    font-size: 1.1em;
+}
+
+/* 終わりのメッセージ */
+.philosophy-article .closing-message {
+    background: linear-gradient(135deg, #667eea 0%, #764ba2 100%);
+    color: white;
+    padding: 2em;
+    border-radius: 12px;
+    margin: 3em 0;
+    text-align: center;
+    font-size: 1.1em;
+    line-height: 1.8;
+}
+
+.philosophy-article .closing-message p {
+    color: white;
+    margin: 1em 0;
+}
+
+/* スペーサー */
+.philosophy-article .spacer {
+    height: 2em;
+}
+
+.philosophy-article .small-spacer {
+    height: 1em;
+}
+
+/* ==========================================================================
+   2. 基本スタイル
+   ========================================================================== */
+
+.entry-content {
+    font-size: 1.05em;
+    font-family: "Helvetica Neue", "Hiragino Kaku Gothic ProN", sans-serif;
+}
+
+/* ==========================================================================
+   3. ナビゲーション
+   ========================================================================== */
+
+#navi {
+    background-color: #333;
+    box-shadow: 0 2px 4px rgba(0, 0, 0, 0.1);
+    position: sticky;
+    top: 0;
+    z-index: 999;
+    width: 100%;
+}
+
+.navi-in {
+    max-width: 1200px;
+    margin: 0 auto;
+}
+
+.menu-top {
+    display: flex;
+    justify-content: center;
+    padding: 0;
+    margin: 0;
+    list-style: none;
+}
+
+.menu-top li {
+    margin: 0;
+    padding: 0;
+    position: relative;
+}
+
+.caption-wrap {
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+}
+
+.item-label {
+    display: block;
+    font-weight: bold;
+    font-size: 1rem;
+    color: transparent;
+    text-shadow: 0 0 0 #ffffff;
+}
+
+.menu-top li a {
+    position: relative;
+    overflow: hidden;
+    transition: all 0.3s;
+}
+
+.menu-top li a::after {
+    content: '';
+    position: absolute;
+    bottom: 0;
+    left: 0;
+    width: 0;
+    height: 2px;
+    background-color: #fff;
+    transition: width 0.3s;
+}
+
+/* 現在のページ */
+.current-menu-item a,
+.current-post-parent a,
+.current-menu-parent a,
+.current-post-ancestor a {
+    background-color: #4a86e8;
+}
+
+/* サブメニュー */
+.sub-menu {
+    position: absolute;
+    top: 100%;
+    left: 0;
+    background-color: #444;
+    min-width: 200px;
+    box-shadow: 0 4px 8px rgba(0, 0, 0, 0.2);
+    opacity: 0;
+    visibility: hidden;
+    transform: translateY(-10px);
+    transition: all 0.3s ease;
+    z-index: 1000;
+}
+
+.menu-item-has-children:hover .sub-menu {
+    opacity: 1;
+    visibility: visible;
+    transform: translateY(0);
+}
+
+.sub-menu li {
+    display: block;
+    width: 100%;
+}
+
+.sub-menu li a {
+    display: block;
+    padding: 12px 20px;
+    color: #fff;
+    text-decoration: none;
+    border-bottom: 1px solid #555;
+}
+
+/* ==========================================================================
+   4. 見出しスタイル
+   ========================================================================== */
+
+/* セクションヘッダー（H3相当） */
+.section-header {
+    font-size: 25px;
+    font-weight: 600;
+    color: #1e40af;
+    margin: 2.5rem 0 1.5rem;
+    padding: 1rem 1.5rem;
+    background: linear-gradient(135deg, #f8fafc 0%, #f1f8ff 100%);
+    border-left: 6px solid #06b6d4;
+    border-radius: 0 12px 12px 0;
+    box-shadow: 0 2px 10px rgba(6, 182, 212, 0.1);
+}
+
+/* サブタイトル */
+.section-subtitle {
+    font-size: 1.125rem;
+    font-weight: 600;
+    color: #000000;
+    margin: 2.5rem 0 1.5rem;
+    padding: 1rem 0 1rem 1.25rem;
+    background-color: #fbfbfc;
+    border-left: 6px solid rgb(72, 101, 178);
+    line-height: 1.4;
+}
+
+/* 小見出し */
+.komidashi {
+    margin: 2rem 0;
+}
+
+.komidashi-title {
+    font-size: 1rem;
+    font-weight: 600;
+    color: #000000;
+    margin: 2rem 0 1rem;
+    padding: 0.75rem 0 0.75rem 1rem;
+    background-color: #fdfdfe;
+    border-left: 4px solid rgb(72, 101, 178);
+    line-height: 1.4;
+}
+
+/* ==========================================================================
+   5. リンクスタイル
+   ========================================================================== */
+
+.toc-link {
+    color: #000000;
+    text-decoration: none;
+    transition: all 0.3s;
+}
+
+.toc-link:hover {
+    text-decoration: underline;
+}
+
+/* ==========================================================================
+   6. Amazon商品リンク
+   ========================================================================== */
+
+.amazon-pic {
+    width: 100%;
+    max-width: 100%;
+    height: auto;
+    display: block;
+    margin: 0 auto;
+    border-radius: 8px;
+    box-shadow: 0 4px 8px rgba(0, 0, 0, 0.1);
+    transition: transform 0.3s ease, box-shadow 0.3s ease;
+}
+
+.amazon-pic-container {
+    width: 100%;
+    max-width: 720px;
+    margin: 20px auto;
+    padding: 15px;
+    border-radius: 12px;
+    background-color: #f8f9fa;
+    border: 1px solid #e9ecef;
+    text-decoration: none;
+    display: block;
+    text-align: center;
+    transition: all 0.3s ease;
+}
+
+.amazon-pic-container:hover {
+    box-shadow: 0 6px 12px rgba(0, 0, 0, 0.15);
+    transform: translateY(-3px);
+    background-color: #f0f7ff;
+}
+
+.amazon-pic-container:hover .amazon-pic {
+    transform: scale(1.02);
+    box-shadow: 0 6px 12px rgba(0, 0, 0, 0.15);
+}
+
+.amazon-link-text {
+    display: block;
+    margin-top: 15px;
+    font-size: 16px;
+    color: #0066c0;
+    font-weight: 600;
+}
+
+.amazon-cta-button {
+    display: inline-block;
+    margin-top: 12px;
+    padding: 8px 20px;
+    background-color: #ff9900;
+    color: #000;
+    border-radius: 4px;
+    font-weight: bold;
+    text-decoration: none;
+    transition: background-color 0.3s ease, transform 0.2s ease;
+}
+
+.amazon-cta-button:hover {
+    background-color: #ffac33;
+    transform: scale(1.05);
+}
+
+/* Audible専用 */
+.audible-container {
+    border-color: #d85b00;
+}
+
+.audible-container:hover {
+    background-color: #fff7f0;
+}
+
+.audible-button {
+    background-color: #d85b00;
+    color: #fff;
+}
+
+.audible-button:hover {
+    background-color: #e76b10;
+}
+
+/* ==========================================================================
+   7. 引用ブロック
+   ========================================================================== */
+
+blockquote {
+    position: relative;
+    margin: 2em 0;
+    padding: 2em 1.5em;
+    background: #f9f9f9;
+    border-left: 5px solid #ccc;
+    font-weight: bold;
+    color: #333;
+    font-style: italic;
+    overflow: visible;
+}
+
+blockquote::before {
+    content: """;
+    font-size: 3em;
+    color: #999;
+    position: absolute;
+    left: 10px;
+    top: 0;
+    font-family: Georgia, serif;
+    line-height: 1;
+}
+
+blockquote::after {
+    content: """;
+    font-size: 3em;
+    color: #999;
+    position: absolute;
+    right: 10px;
+    bottom: 0;
+    font-family: Georgia, serif;
+    line-height: 1;
+}
+
+blockquote cite {
+    display: block;
+    margin-top: 0.5em;
+    text-align: right;
+    font-size: 0.9em;
+    color: #666;
+}
+
+/* ==========================================================================
+   8. レスポンシブデザイン
+   ========================================================================== */
+
+/* デスクトップ（1025px以上） */
+@media screen and (min-width: 1025px) {
+    .menu-mobile {
+        display: none;
+    }
+    
+    .menu-top li a {
+        display: block;
+        padding: 15px 20px;
+        color: #fff;
+        text-decoration: none;
+    }
+    
+    .menu-top li a:hover {
+        background-color: #444;
+        transform: translateY(-2px);
+    }
+    
+    .menu-top li a:hover::after {
+        width: 100%;
+    }
+}
+
+/* タブレット（768px - 1024px） */
+@media screen and (min-width: 768px) and (max-width: 1024px) {
+    .menu-top {
+        display: flex;
+        justify-content: center;
+        flex-wrap: wrap;
+    }
+    
+    .menu-top li a {
+        padding: 12px 16px;
+        font-size: 14px;
+    }
+    
+    .item-label {
+        font-size: 0.9rem;
+    }
+    
+    .section-title {
+        font-size: 24px;
+        padding: 1rem 1.2rem;
+        margin: 2.5rem 0 1.5rem;
+    }
+    
+    .section-header {
+        font-size: 22px;
+        padding: 0.8rem 1.2rem;
+        margin: 2rem 0 1.2rem;
+    }
+    
+    .komidashi-title {
+        font-size: 19px;
+        padding: 0.7rem 0.8rem;
+    }
+}
+
+/* モバイル（最大767px） */
+@media screen and (max-width: 767px) {
+    #navi {
+        display: block;
+    }
+    
+    .menu-top {
+        display: flex;
+        justify-content: space-around;
+        align-items: center;
+        padding: 0;
+        margin: 0;
+        flex-wrap: nowrap;
+    }
+    
+    .menu-top li {
+        flex: 1;
+        text-align: center;
+    }
+    
+    .menu-top li a {
+        display: block;
+        padding: 10px 8px;
+        color: #fff;
+        text-decoration: none;
+        font-size: 13px;
+        min-height: 50px;
+        display: flex;
+        flex-direction: column;
+        justify-content: center;
+        align-items: center;
+    }
+    
+    .menu-top li a:hover {
+        background-color: #444;
+    }
+    
+    .item-label {
+        font-size: 0.8rem;
+        margin-top: 2px;
+    }
+    
+    .sub-menu {
+        position: absolute;
+        left: 50%;
+        transform: translateX(-50%);
+        min-width: 180px;
+    }
+    
+    /* 哲学記事 */
+    .philosophy-article {
+        font-size: 15px;
+    }
+    
+    .philosophy-article .hero-quote {
+        font-size: 1.5em;
+    }
+    
+    .philosophy-article .section-title {
+        font-size: 1.4em;
+    }
+    
+    .philosophy-article .quote-block {
+        padding: 1em 1.5em;
+        font-size: 1em;
+    }
+    
+    .philosophy-article .emphasis-box {
+        padding: 1em;
+    }
+    
+    .philosophy-article .closing-message {
+        padding: 1.5em;
+        font-size: 1em;
+    }
+    
+    /* 見出し */
+    .section-title {
+        font-size: 1.5rem;
+        padding: 1rem 1.2rem;
+        margin: 2rem 0 1.5rem;
+    }
+    
+    .section-header {
+        font-size: 1.2rem;
+        padding: 0.8rem 1rem;
+        margin: 2rem 0 1rem;
+    }
+    
+    /* Amazon */
+    .amazon-pic-container {
+        width: 90%;
+        padding: 10px;
+    }
+    
+    .amazon-link-text {
+        font-size: 15px;
+    }
+    
+    .amazon-cta-button {
+        padding: 7px 18px;
+    }
+}
+
+/* 小型スマホ（最大350px） */
+@media screen and (max-width: 350px) {
+    .menu-top li a {
+        padding: 8px 4px;
+        font-size: 12px;
+        min-height: 45px;
+    }
+    
+    .item-label {
+        font-size: 0.7rem;
+    }
+    
+    .section-title {
+        font-size: 22px;
+        padding: 0.8rem 1rem;
+        margin: 2rem 0 1.2rem;
+    }
+    
+    .section-header {
+        font-size: 20px;
+        padding: 0.7rem 1rem;
+        margin: 1.5rem 0 1rem;
+    }
+    
+    .komidashi-title {
+        font-size: 18px;
+        padding: 0.6rem 0.8rem;
+    }
+    
+    .amazon-pic-container {
+        width: 95%;
+        padding: 8px;
+    }
+    
+    .amazon-link-text {
+        font-size: 14px;
+    }
+    
+    .amazon-cta-button {
+        padding: 6px 15px;
+        font-size: 13px;
+    }
+}
+
+/* ==========================================================================
+   9. ユーティリティクラス
+   ========================================================================== */
+
+.text-center {
+    text-align: center;
+}
+
+.small-text {
+    font-size: 0.9em;
+    color: #6c757d;
+}
+
+.bold {
+    font-weight: 600;
+}
+
+.italic {
+    font-style: italic;
+}
