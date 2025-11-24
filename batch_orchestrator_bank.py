@@ -15,7 +15,7 @@ https://docs.google.com/spreadsheets/d/1DodLnBNvxlmgK5kKE5niRO7YbMNYOWbS3gnB_umg
 使い方:
   python batch_orchestrator_bank.py 
     --persona-dir data\personas\note\saito.txt
-    --keywords_csv data\keywords\ginkou_yabai.csv
+    --keywords_csv data\keywords\ginkou_yabai02.csv
     --folder-id 1WJNsfUl5Arst58E8b2LPo1h7A0inlwlI 
     --sheet-id  1XEOsAIiKNBe5IwqGmvV87ui8tVrvyA6TF8wVPkW_zNA
     --sheet-tab kasegenai

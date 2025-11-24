@@ -7,4 +7,3 @@ python batch_orchestrator_bank.py \
   --folder-id ${GDRIVE_FOLDER_ID} \
   --sheet-id ${SHEET_ID} \
   --sheet-tab mama \
-  --last-cta-text "まずは相談をしてみる！"

@@ -25,6 +25,27 @@ vi projects/my_project/prompts/draft.txt
 
 ### よく使うコマンド
 
+#### Windows (PowerShell)
+
+```powershell
+# 記事一括生成（汎用版）
+.\recipes\batch_generate.ps1 my_project
+
+# 記事一括生成（bank版：固定セクション付き）
+.\recipes\batch_generate_bank.ps1
+
+# Note公開
+.\recipes\note_publish.ps1
+
+# WordPress公開（half用）
+.\recipes\wp_publish_half.ps1
+
+# WordPress記事削除
+.\recipes\wp_delete.ps1
+```
+
+#### Linux/macOS (Bash)
+
 ```bash
 # 記事一括生成（汎用版）
 ./recipes/batch_generate.sh my_project
@@ -49,6 +70,8 @@ vi projects/my_project/prompts/draft.txt
 ```
 articlebot3/
 ├── recipes/              # よく使うコマンド集
+│   ├── *.ps1            # PowerShell版スクリプト（Windows用）
+│   └── *.sh             # Bash版スクリプト（Linux/macOS用）
 ├── projects/             # 案件ごとのデータ
 │   ├── _template/       # 新規案件用テンプレート
 │   └── bank/            # bank案件の例

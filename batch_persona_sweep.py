@@ -1,17 +1,18 @@
 # batch_persona_sweep.py
 # -*- coding: utf-8 -*-
+# https://docs.google.com/spreadsheets/d/1TJHVpMMGZtQaxK9WxK93-bIUXogNBluxWDrRxN3zh0w/edit?gid=288797689#gid=288797689
 # https://docs.google.com/spreadsheets/d/1RaysuPyx13mGygHjr2hpVhQCJw2cD6xvadvV9ALxxEU/edit?copiedFromTrash=&gid=1333931101#gid=1333931101
 """
 ペルソナ一括処理スクリプト（固定キーワード・プロンプト版）
 
 使い方:
 python batch_persona_sweep.py 
-    --persona-dir data/personas/hukugyo
-    --info data\info\hukugyo\next_franchise_info.json
-    --prompts-dir data\prompts\next_fra
+    --persona-dir data/personas/test
+    --info data\info\hukugyo\free_hyoban.json
+    --prompts-dir data\prompts\free_carrer
     --folder-id 11aS5WCwVWOk8F5g_PIJF5rmK7GA8Uru5 
-    --sheet-id 1RaysuPyx13mGygHjr2hpVhQCJw2cD6xvadvV9ALxxEU 
-    --sheet-tab fra
+    --sheet-id 1TJHVpMMGZtQaxK9WxK93-bIUXogNBluxWDrRxN3zh0w
+    --sheet-tab hyoban
 """
 import os
 import re

@@ -15,8 +15,9 @@ class Config:
             load_dotenv(dotenv_path=env_path, override=True)
         else:
             # デフォルトパス（ROOT/.env → CWD/.env の順）
+            # .envファイルの値を最優先（既存の環境変数を上書き）
             root = pathlib.Path(__file__).resolve().parent.parent
-            load_dotenv(dotenv_path=root / ".env", override=False)
+            load_dotenv(dotenv_path=root / ".env", override=True)
             load_dotenv(dotenv_path=pathlib.Path.cwd() / ".env", override=True)
         
         # ===== LLM設定 =====

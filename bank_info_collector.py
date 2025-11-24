@@ -322,9 +322,11 @@ class BankInfoCollectorV2:
         user_prompt = self._build_user_prompt(bank_name, search_summary, content_texts)
         
         # Claude実行（200K contextフル活用）
+        # モデル名は.envから読み取る（MODEL_DRAFTまたはデフォルト値）
+        model = self.config.model_draft
         print(f"  → Claude分析開始（context: 約{len(user_prompt)//1000}K文字）...")
         response = self.llm.generate(
-            model="claude-sonnet-4-5",  # Claude Sonnet 4.5 (2025年最新)
+            model=model,
             system=system_prompt,
             user=user_prompt,
             max_tokens=16000  # 最大出力
@@ -534,7 +536,9 @@ def main():
     api_key = config.claude_api_key if config.provider == "anthropic" else config.openai_api_key
     llm = LLMClient(config.provider, api_key)
     
-    print(f"[BOOT] {config.provider} / claude-sonnet-4-5")
+    # モデル名は.envから読み取る（MODEL_DRAFTまたはデフォルト値）
+    model_name = config.model_draft
+    print(f"[BOOT] {config.provider} / {model_name}")
     print(f"[BOOT] Brave Search API: {'設定済み' if config.brave_api_key else '未設定'}")
     
     # CSV読み込み
